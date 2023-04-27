@@ -25,10 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        widget.cpp
+        widget.cpp \
+    game.cpp \
+    savemanager.cpp
 
 HEADERS += \
-        widget.h
+        widget.h \
+    game.h \
+    savemanager.h
 
 FORMS += \
-        widget.ui
+        widget.ui \
+    game.ui

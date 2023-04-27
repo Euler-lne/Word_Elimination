@@ -20,7 +20,7 @@
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
+      <enum>QSizePolicy::Maximum</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -55,9 +55,12 @@
             <item>
              <widget class="QLabel" name="labelAccount">
               <property name="text">
-               <string>用户名：</string>
+               <string>用户：</string>
               </property>
              </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="account"/>
             </item>
            </layout>
           </widget>
@@ -65,6 +68,9 @@
          <item>
           <widget class="QWidget" name="widget_2" native="true">
            <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetDefaultConstraint</enum>
+            </property>
             <item>
              <widget class="QLabel" name="labelPassword">
               <property name="text">
@@ -72,20 +78,42 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QLineEdit" name="password"/>
+            </item>
            </layout>
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_3" native="true">
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <widget class="QWidget" name="widget_10" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="labelType">
               <property name="text">
-               <string>账号类型：</string>
+               <string>类型：</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="isQuestionMaker">
+              <property name="text">
+               <string>出题者</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton">
+              <property name="text">
+               <string>闯关者</string>
               </property>
              </widget>
             </item>
            </layout>
+           <zorder>isQuestionMaker</zorder>
+           <zorder>radioButton</zorder>
+           <zorder>isQuestionMaker</zorder>
+           <zorder>radioButton</zorder>
+           <zorder>labelType</zorder>
           </widget>
          </item>
         </layout>
@@ -93,21 +121,7 @@
       </item>
       <item>
        <widget class="QWidget" name="widget_5" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QLineEdit" name="account"/>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="password"/>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="isQuestionMaker">
-           <property name="text">
-            <string>出题者</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <layout class="QVBoxLayout" name="verticalLayout_2"/>
        </widget>
       </item>
       <item>

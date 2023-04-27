@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include "game.h"
 
 namespace Ui {
 class Widget;
@@ -17,6 +18,11 @@ public:
 
 private:
     Ui::Widget *ui;
+    void InitConnect();
+    Game *game;
+public slots:
+    void ClickLogin();
+    void ClickEnroll();
 };
 
 #endif // WIDGET_H
