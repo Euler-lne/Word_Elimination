@@ -79,7 +79,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="password"/>
+             <widget class="QLineEdit" name="password">
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -102,7 +106,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton">
+             <widget class="QRadioButton" name="noQuestionMaker">
               <property name="text">
                <string>闯关者</string>
               </property>
@@ -110,9 +114,7 @@
             </item>
            </layout>
            <zorder>isQuestionMaker</zorder>
-           <zorder>radioButton</zorder>
-           <zorder>isQuestionMaker</zorder>
-           <zorder>radioButton</zorder>
+           <zorder>noQuestionMaker</zorder>
            <zorder>labelType</zorder>
           </widget>
          </item>

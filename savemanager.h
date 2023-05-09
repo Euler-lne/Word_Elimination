@@ -7,7 +7,14 @@ class SaveManager
 {
 public:
     SaveManager();
-    static QString PATH;
+    static int LoadUser(QString,QString,int);
+    static int SetUser(QString,QString,int);
+    static const QString PATH;
+    static const int ERROR;
+    static const int TYPE_ERROR;
+    static const int PASSWORD_ERROR;
+    static const int RIGHT;
+    static const int EXIST;
 
 };
 
