@@ -2,9 +2,11 @@
 #define WIDGET_H
 
 class Game;
+class MakerWindow;
 
 #include <QWidget>
 #include "game.h"
+#include "makerwindow.h"
 
 namespace Ui {
 class Widget;
@@ -21,7 +23,12 @@ public:
 private:
     Ui::Widget *ui;
     void InitConnect();
+    void LoginTypeError(int);
+    void SwitchWindow(int);
+    bool ConfirmPassword();
     Game *game;
+    MakerWindow *makerWindow;
+
 public slots:
     void ClickLogin();
     void ClickEnroll();

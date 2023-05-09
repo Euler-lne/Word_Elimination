@@ -99,23 +99,23 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="isQuestionMaker">
-              <property name="text">
-               <string>出题者</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QRadioButton" name="noQuestionMaker">
               <property name="text">
                <string>闯关者</string>
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QRadioButton" name="isQuestionMaker">
+              <property name="text">
+               <string>出题者</string>
+              </property>
+             </widget>
+            </item>
            </layout>
            <zorder>isQuestionMaker</zorder>
-           <zorder>noQuestionMaker</zorder>
            <zorder>labelType</zorder>
+           <zorder>noQuestionMaker</zorder>
           </widget>
          </item>
         </layout>

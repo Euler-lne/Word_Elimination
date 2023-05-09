@@ -27,13 +27,16 @@ SOURCES += \
         main.cpp \
         widget.cpp \
     game.cpp \
-    savemanager.cpp
+    savemanager.cpp \
+    makerwindow.cpp
 
 HEADERS += \
         widget.h \
     game.h \
-    savemanager.h
+    savemanager.h \
+    makerwindow.h
 
 FORMS += \
         widget.ui \
-    game.ui
+    game.ui \
+    makerwindow.ui
