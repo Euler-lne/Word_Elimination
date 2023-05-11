@@ -1,9 +1,12 @@
 #include "savemanager.h"
+#include "maker.h"
+#include "answer.h"
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QDebug>
 #include <QFile>
+
 
 const int SaveManager::ERROR = -1;
 const int SaveManager::TYPE_ERROR = 0;
@@ -48,7 +51,7 @@ int SaveManager::LoadUser(const QString _name, const QString _password, const in
     return PASSWORD_ERROR;
 }
 
-int SaveManager::SetUser(const QString _name, const QString _password, const int _type)
+int SaveManager::SaveUser(const QString _name, const QString _password, const int _type)
 {
     bool key = false;
     QString path = PATH + "/data/user.json";
@@ -146,4 +149,11 @@ int SaveManager::RemoveUser(const QString _name)
     file2.close();
     return OK;
 }
+
+
+//int SaveManager::SavePlayerAnswer(const Answer *)
+//{
+
+//}
+
 

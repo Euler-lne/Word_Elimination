@@ -28,13 +28,19 @@ SOURCES += \
         widget.cpp \
     game.cpp \
     savemanager.cpp \
-    makerwindow.cpp
+    makerwindow.cpp \
+    player.cpp \
+    answer.cpp \
+    maker.cpp
 
 HEADERS += \
         widget.h \
     game.h \
     savemanager.h \
-    makerwindow.h
+    makerwindow.h \
+    player.h \
+    answer.h \
+    maker.h
 
 FORMS += \
         widget.ui \

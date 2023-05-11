@@ -2,13 +2,19 @@
 #define SAVEMANAGER_H
 #include <QString>
 
+class Answer;
+class Maker;
 
 class SaveManager
 {
 public:
     SaveManager();
     static int LoadUser(const QString,const QString,const int);
-    static int SetUser(const QString,const QString,const int);
+    static int SaveUser(const QString,const QString,const int);
+    static int LoadPlayerMaker(Maker *);
+    static int LoadPlayerAnswer(Answer *);
+    static int SavePlayerMaker(const Maker *);
+    static int SavePlayerAnswer(const Answer *);
     static int RemoveUser(const QString);
     static const QString PATH;
     static const int ERROR;

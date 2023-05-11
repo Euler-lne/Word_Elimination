@@ -1,6 +1,8 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include "savemanager.h"
+#include "game.h"
+#include "makerwindow.h"
 #include <QMessageBox>
 #include <QDebug>
 #include <QInputDialog>
@@ -84,7 +86,7 @@ void Widget::ClickEnroll()
     else
         type = 1;
     //type是当前选中的是什么，不一定是内存中存储的
-    int key = SaveManager::SetUser(ui->account->text(),ui->password->text(),type);
+    int key = SaveManager::SaveUser(ui->account->text(),ui->password->text(),type);
     if(key == SaveManager::EXIST)
     {
         //账号存在
@@ -107,7 +109,7 @@ void Widget::ClickEnroll()
             if(key == SaveManager::OK)
                 SaveManager::RemoveUser(ui->account->text());
             else
-                SaveManager::SetUser(ui->account->text(),ui->password->text(),temp);
+                SaveManager::SaveUser(ui->account->text(),ui->password->text(),temp);
             ui->password->setText("");
             QMessageBox::warning(this,tr("警告"),tr("两次密码不一样！\n请重新输入密码！"));
         }
@@ -135,7 +137,7 @@ void Widget::LoginTypeError(int _type)
                           QMessageBox::Ok); //默认
     if(rb1 == QMessageBox::Ok)
     {
-        SaveManager::SetUser(ui->account->text(),ui->password->text(),2);
+        SaveManager::SaveUser(ui->account->text(),ui->password->text(),2);
         QMessageBox::StandardButton rb2 = QMessageBox::question(this,
                               tr("询问"),
                               tr("已经为您升级完成，\n是否要进行登录？"),

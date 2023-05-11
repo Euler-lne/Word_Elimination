@@ -1,5 +1,7 @@
 #include "game.h"
 #include "ui_game.h"
+#include "answer.h"
+#include "maker.h"
 
 
 Game::Game(QWidget *parent) :
@@ -8,10 +10,16 @@ Game::Game(QWidget *parent) :
 {
     ui->setupUi(this);
     InitConnect();
+    maker = NULL;
+    answer = NULL;
 }
 
 Game::~Game()
 {
+    if(maker != NULL)
+        delete maker;
+    if(answer != NULL)
+        delete answer;
     delete ui;
 }
 void Game::InitConnect()
@@ -29,6 +37,10 @@ void Game::ClickRankBtn()
 
 }
 void Game::ClickAccountBtn()
+{
+
+}
+void Game::SetPlayer(QString _name)
 {
 
 }

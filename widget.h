@@ -5,8 +5,7 @@ class Game;
 class MakerWindow;
 
 #include <QWidget>
-#include "game.h"
-#include "makerwindow.h"
+
 
 namespace Ui {
 class Widget;
