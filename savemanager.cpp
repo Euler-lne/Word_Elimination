@@ -1,7 +1,4 @@
 #include "savemanager.h"
-#include "maker.h"
-#include "answer.h"
-#include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QDebug>
@@ -15,7 +12,13 @@ const int SaveManager::EXIST = 2;
 const int SaveManager::PASSWORD_ERROR = 3;
 const int SaveManager::NOT_EXIST = 4;
 const int SaveManager::CHANGE_TYPE = 5;
+const QString SaveManager::LEVEL_NUM = "Level Num";
+const QString SaveManager::GRADE = "Grade";
+const QString SaveManager::EXP = "EXP";
+const QString SaveManager::ANSWER = "Answer";
+const QString SaveManager::MAKER = "Maker";
 const QString SaveManager::PATH = "../Word_Elimination";
+
 SaveManager::SaveManager()
 {
 }
@@ -119,6 +122,7 @@ int SaveManager::SaveUser(const QString _name, const QString _password, const in
 
 int SaveManager::RemoveUser(const QString _name)
 {
+    RemovePlayer(_name);
     QString path = PATH + "/data/user.json";
     QFile file1(path);
     if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -150,10 +154,191 @@ int SaveManager::RemoveUser(const QString _name)
     return OK;
 }
 
+int SaveManager::RemovePlayer(const QString _name)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file1(path);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file1);
+    QString jsonString = in.readAll();
+    file1.close();
+    QFile file2(path);
+    if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    if(object.contains(_name))
+        object.remove(_name);
+    else
+    {
+        file2.close();
+        return NOT_EXIST;
+    }
+    doc.setObject(object);
+    file2.write(doc.toJson());
+    file2.close();
+    return OK;
+}
 
-//int SaveManager::SavePlayerAnswer(const Answer *)
-//{
+int SaveManager::LoadPlayerAnswer(const QString _name, QJsonObject &_answerData)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file);
+    QString jsonString = in.readAll();
+    file.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    if(object.contains(_name))
+    {
+        QJsonObject player = object.value(_name).toObject();
+        QJsonObject answer = player.value(ANSWER).toObject();
+        _answerData = answer;
+    }
+    else
+    {
+        _answerData.insert(LEVEL_NUM, 1);
+        _answerData.insert(GRADE, 0);
+        _answerData.insert(EXP, 0);
+        SavePlayerAnswer(_name, _answerData);
+    }
+    return OK;
+}
+//也可以返回一个JsonObject，这样可以减少参数
+int SaveManager::LoadPlayerMaker(const QString _name, QJsonObject &_makerData)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file);
+    QString jsonString = in.readAll();
+    file.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    if(object.contains(_name))
+    {
+        QJsonObject player = object.value(_name).toObject();
+        QJsonObject maker = player.value(MAKER).toObject();
+        _makerData = maker;
+    }
+    else
+    {
+        _makerData.insert(LEVEL_NUM, 0);
+        _makerData.insert(GRADE, 0);
+        SavePlayerMaker(_name, _makerData);
+    }
+    return OK;
+}
 
-//}
+int SaveManager::SavePlayerAnswer(const QString _name, const QJsonObject _answerData)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file1(path);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file1);
+    QString jsonString = in.readAll();
+    file1.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    if(object.contains(_name))
+    {
+        QJsonObject player = object.value(_name).toObject();
+        QJsonObject answer = player.value(ANSWER).toObject();
+        answer[LEVEL_NUM] = _answerData[LEVEL_NUM];
+        answer[GRADE] = _answerData[GRADE];
+        answer[EXP] = _answerData[EXP];
+        player[ANSWER] = answer;
+        object[_name] = player;
+    }
+    else
+    {
+        QJsonObject player;
+        QJsonObject answer,maker;
+        answer = _answerData;
+        maker.insert(LEVEL_NUM,0);
+        maker.insert(GRADE,0);
+        player.insert(ANSWER,answer);
+        player.insert(MAKER,maker);
+        object.insert(_name,player);
+    }
+    doc.setObject(object);
+    QFile file2(path);
+    if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    file2.write(doc.toJson());
+    file2.close();
+    return OK;
+}
+
+int SaveManager::SavePlayerMaker(const QString _name, const QJsonObject _makerData)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file1(path);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file1);
+    QString jsonString = in.readAll();
+    file1.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    if(object.contains(_name))
+    {
+        QJsonObject player = object.value(_name).toObject();
+        QJsonObject maker = player.value(MAKER).toObject();
+        maker[LEVEL_NUM] = _makerData[LEVEL_NUM];
+        maker[GRADE] = _makerData[GRADE];
+        maker[EXP] = _makerData[EXP];
+        player[MAKER] = maker;
+        object[_name] = player;
+    }
+    else
+    {
+        QJsonObject player;
+        QJsonObject answer,maker;
+        maker = _makerData;
+        answer.insert(LEVEL_NUM,1);
+        answer.insert(GRADE,0);
+        answer.insert(EXP,0);
+        player.insert(ANSWER,answer);
+        player.insert(MAKER,maker);
+        object.insert(_name,player);
+    }
+    doc.setObject(object);
+    QFile file2(path);
+    if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    file2.write(doc.toJson());
+    file2.close();
+    return OK;
+}
 
 

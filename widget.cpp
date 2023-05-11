@@ -159,6 +159,7 @@ void Widget::SwitchWindow(int _type)
     //闯关者
     if(_type == 1)
     {
+        game->SetPlayer(ui->account->text());
         this->hide();
         game->show();
         game->setGeometry(this->geometry());

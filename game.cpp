@@ -1,7 +1,7 @@
 #include "game.h"
 #include "ui_game.h"
+#include "savemanager.h"
 #include "answer.h"
-#include "maker.h"
 
 
 Game::Game(QWidget *parent) :
@@ -10,14 +10,11 @@ Game::Game(QWidget *parent) :
 {
     ui->setupUi(this);
     InitConnect();
-    maker = NULL;
     answer = NULL;
 }
 
 Game::~Game()
 {
-    if(maker != NULL)
-        delete maker;
     if(answer != NULL)
         delete answer;
     delete ui;
@@ -42,5 +39,14 @@ void Game::ClickAccountBtn()
 }
 void Game::SetPlayer(QString _name)
 {
+    answer = new my_answer::Answer(_name);
+    playerName = _name;
+    SaveManager::LoadPlayerAnswer(_name, answerData);
+    int exp = answerData.value(SaveManager::EXP).toInt();
+    int grade = answerData.value(SaveManager::GRADE).toInt();
+    int levelNum = answerData.value(SaveManager::LEVEL_NUM).toInt();
+    answer->SetExp(exp);
+    answer->SetGrade(grade);
+    answer->SetLevelNum(levelNum);
 
 }

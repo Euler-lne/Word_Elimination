@@ -1,9 +1,7 @@
 #ifndef SAVEMANAGER_H
 #define SAVEMANAGER_H
 #include <QString>
-
-class Answer;
-class Maker;
+#include <QJsonObject>
 
 class SaveManager
 {
@@ -11,11 +9,12 @@ public:
     SaveManager();
     static int LoadUser(const QString,const QString,const int);
     static int SaveUser(const QString,const QString,const int);
-    static int LoadPlayerMaker(Maker *);
-    static int LoadPlayerAnswer(Answer *);
-    static int SavePlayerMaker(const Maker *);
-    static int SavePlayerAnswer(const Answer *);
+    static int LoadPlayerMaker(const QString,QJsonObject &);
+    static int LoadPlayerAnswer(const QString,QJsonObject &);
+    static int SavePlayerMaker(const QString,const QJsonObject);
+    static int SavePlayerAnswer(const QString, const QJsonObject);
     static int RemoveUser(const QString);
+    static int RemovePlayer(const QString);
     static const QString PATH;
     static const int ERROR;
     static const int TYPE_ERROR;
@@ -24,6 +23,11 @@ public:
     static const int EXIST;
     static const int NOT_EXIST;
     static const int CHANGE_TYPE;
+    static const QString LEVEL_NUM;
+    static const QString GRADE;
+    static const QString EXP;
+    static const QString ANSWER;
+    static const QString MAKER;
 
 };
 

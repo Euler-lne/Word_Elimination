@@ -1,0 +1,24 @@
+{
+    "1": {
+        "Answer": {
+            "EXP": 0,
+            "Grade": 0,
+            "Level Num": 1
+        },
+        "Maker": {
+            "Grade": 0,
+            "Level Num": 0
+        }
+    },
+    "2": {
+        "Answer": {
+            "EXP": 0,
+            "Grade": 0,
+            "Level Num": 1
+        },
+        "Maker": {
+            "Grade": 0,
+            "Level Num": 0
+        }
+    }
+}

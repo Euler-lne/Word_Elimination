@@ -8,6 +8,9 @@ class Player
 {
 public:
     Player(QString);
+    void SetLevelNum(int _num){ levelNum = _num;}
+    void SetGrade(int _grade){grade = _grade;}
+
 
 protected:
     PlayerType playerType;

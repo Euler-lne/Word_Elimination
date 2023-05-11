@@ -1,11 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
 
-class Maker;
-class Answer;
 
 #include <QWidget>
+#include <QJsonObject>
 #include <QString>
+#include "answer.h"
 
 namespace Ui {
 class Game;
@@ -24,8 +24,8 @@ private:
     Ui::Game *ui;
     void InitConnect();
     QString playerName;
-    Answer *answer;
-    Maker *maker;
+    my_answer::Answer *answer;
+    QJsonObject answerData;
 
 public slots:
     void ClickStartBtn();
