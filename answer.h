@@ -7,7 +7,8 @@ namespace my_answer {
     {
     public:
         Answer(QString);
-        void SetExp(int _exp){exp = _exp;}
+        void UpdateData();
+        void LoadData();
     private:
         int exp;
     };

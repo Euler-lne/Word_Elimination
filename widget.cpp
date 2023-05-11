@@ -1,7 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include "savemanager.h"
-#include "game.h"
+#include "answerwindow.h"
 #include "makerwindow.h"
 #include <QMessageBox>
 #include <QDebug>
@@ -13,14 +13,14 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->noQuestionMaker->setChecked(true); //设置默认选中
-    game = new Game();
+    answerWindow = new AnswerWindow();
     makerWindow = new MakerWindow();
     InitConnect();
 }
 
 Widget::~Widget()
 {
-    delete game;
+    delete answerWindow;
     delete makerWindow;
     delete ui;
 }
@@ -33,7 +33,7 @@ void Widget::InitConnect()
 /// \brief Widget::ClickLogin
 /// 按下注册键需要执行的操作
 /// 1.需要判断用户是否存在，密码是否正确
-/// 2.如果密码正确且类型选择正确转跳到game窗口
+/// 2.如果密码正确且类型选择正确转跳到AnswerWindow窗口
 /// 3.如果密码正确且类型选择错误转提示是否在参加相应的角色
 /// 4.如果密码不正确弹出提示
 ///
@@ -159,10 +159,10 @@ void Widget::SwitchWindow(int _type)
     //闯关者
     if(_type == 1)
     {
-        game->SetPlayer(ui->account->text());
+        answerWindow->SetPlayerName(ui->account->text());
         this->hide();
-        game->show();
-        game->setGeometry(this->geometry());
+        answerWindow->show();
+        answerWindow->setGeometry(this->geometry());
     }
     else
     {

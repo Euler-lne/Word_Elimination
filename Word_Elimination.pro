@@ -26,23 +26,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
-    game.cpp \
+    answerwindow.cpp \
     savemanager.cpp \
     makerwindow.cpp \
     player.cpp \
     answer.cpp \
-    maker.cpp
+    maker.cpp \
+    selectlevel.cpp
 
 HEADERS += \
         widget.h \
-    game.h \
+    answerwindow.h \
     savemanager.h \
     makerwindow.h \
     player.h \
     answer.h \
-    maker.h
+    maker.h \
+    selectlevel.h
 
 FORMS += \
         widget.ui \
-    game.ui \
-    makerwindow.ui
+    answerwindow.ui \
+    makerwindow.ui \
+    selectlevel.ui

@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <QString>
+#include <QJsonObject>
 
 enum PlayerType{Answer,Maker};
 
@@ -8,8 +9,6 @@ class Player
 {
 public:
     Player(QString);
-    void SetLevelNum(int _num){ levelNum = _num;}
-    void SetGrade(int _grade){grade = _grade;}
 
 
 protected:
@@ -17,6 +16,7 @@ protected:
     QString name;
     int levelNum;
     int grade;
+    QJsonObject data;
 };
 
 #endif // PLAYER_H

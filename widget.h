@@ -1,7 +1,7 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-class Game;
+class AnswerWindow;
 class MakerWindow;
 
 #include <QWidget>
@@ -25,7 +25,7 @@ private:
     void LoginTypeError(int);
     void SwitchWindow(int);
     bool ConfirmPassword();
-    Game *game;
+    AnswerWindow *answerWindow;
     MakerWindow *makerWindow;
 
 public slots:

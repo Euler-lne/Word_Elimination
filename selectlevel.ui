@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Game</class>
- <widget class="QWidget" name="Game">
+ <class>SelectLevel</class>
+ <widget class="QWidget" name="SelectLevel">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>301</height>
+    <width>467</width>
+    <height>317</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,23 +15,10 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
     <widget class="QWidget" name="widget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <spacer name="horizontalSpacer_2">
+       <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -44,9 +31,16 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="startBtn">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>开始挑战</string>
+         <string>账号：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="accountLab">
+        <property name="text">
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>
@@ -63,14 +57,22 @@
         </property>
        </spacer>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QWidget" name="widget_2" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <spacer name="horizontalSpacer_3">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>等级：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="gradeLab">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -83,9 +85,16 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="rankBtn">
+       <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>排名</string>
+         <string>经验：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="expLab">
+        <property name="text">
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>
@@ -106,8 +115,25 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget_3" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>447</width>
+        <height>206</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <spacer name="horizontalSpacer_5">
         <property name="orientation">
@@ -122,9 +148,9 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="accountBtn">
+       <widget class="QPushButton" name="confirmBtn">
         <property name="text">
-         <string>账户</string>
+         <string>返回菜单</string>
         </property>
        </widget>
       </item>
@@ -143,19 +169,6 @@
       </item>
      </layout>
     </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
