@@ -9,7 +9,7 @@ namespace my_answer {
         Answer(QString);
         void UpdateData();
         void LoadData();
-        int GetEXP(){return exp;}
+        int GetEXP() { return exp;}
     private:
         int exp;
     };

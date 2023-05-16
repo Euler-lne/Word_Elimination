@@ -9,8 +9,9 @@ class Player
 {
 public:
     Player(QString);
-    int GetLevelNum(){return levelNum;}
-    int GetGrade(){return grade;}
+    int GetLevelNum(){ return levelNum;}
+    int GetGrade(){ return grade;}
+
 
 protected:
     PlayerType playerType;
