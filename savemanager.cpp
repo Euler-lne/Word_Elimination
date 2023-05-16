@@ -386,7 +386,7 @@ int SaveManager::SaveLevel(QString _word)
     if(len/5 >= 3)
         len = 15;
     //一共分出40关
-    for(int i = len / 5 * 10; i < len / 5 * 10 + 10;i++)
+    for(int i = len / 5 * 10 + 1; i <= len / 5 * 10 + 10;i++)
     {
         QJsonObject level;
         QJsonArray arry;
@@ -402,7 +402,7 @@ int SaveManager::SaveLevel(QString _word)
         else
         {
             //每关时间的产生
-            float tempTime = 6.0 * ((len / 5.0 + 1)/3) * (4.0/(i/10.0 + 1));
+            float tempTime = 6.5 * ((len / 5.0 + 1)/3) * (4.0/(i/10.0 + 1));
             int tempNum = 0;
             switch (i/5)
             {
