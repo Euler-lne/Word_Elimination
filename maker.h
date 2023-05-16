@@ -2,13 +2,15 @@
 #define MAKER_H
 #include "player.h"
 
-
-class Maker : public Player
+namespace my_maker
 {
-public:
-    Maker(QString);
-    void LoadData();
-    void UpdateData();
-};
+    class Maker : public Player
+    {
+    public:
+        Maker(QString);
+        void LoadData();
+        void UpdateData();
+    };
+}
 
 #endif // MAKER_H

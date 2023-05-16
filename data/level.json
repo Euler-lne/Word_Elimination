@@ -1,192 +1,432 @@
 {
     "1": {
         "num": 1,
-        "time": 12.606060981750488,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     },
     "10": {
         "num": 7,
-        "time": 6.933333396911621,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     },
     "11": {
         "num": 7,
-        "time": 8.253968238830566,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "12": {
         "num": 7,
-        "time": 7.878787994384766,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "13": {
         "num": 7,
-        "time": 7.536231994628906,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "14": {
         "num": 7,
-        "time": 7.222222328186035,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "15": {
         "num": 9,
-        "time": 6.933333396911621,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "16": {
         "num": 9,
-        "time": 6.666666507720947,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "17": {
         "num": 9,
-        "time": 6.419753074645996,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "18": {
         "num": 9,
-        "time": 6.190476417541504,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "19": {
         "num": 9,
-        "time": 5.977011680603027,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
         ]
     },
     "2": {
         "num": 1,
-        "time": 11.55555534362793,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     },
     "20": {
         "num": 11,
-        "time": 5.777777671813965,
         "words": [
             "happy",
-            "click"
+            "apple",
+            "orange",
+            "banana",
+            "hello",
+            "minus",
+            "three",
+            "number",
+            "secret",
+            "English",
+            "fourteen",
+            "keyboard"
+        ]
+    },
+    "21": {
+        "num": 11,
+        "words": [
+            "self-increase",
+            "pencil-box"
+        ]
+    },
+    "22": {
+        "num": 11,
+        "words": [
+            "self-increase",
+            "pencil-box"
+        ]
+    },
+    "23": {
+        "num": 11,
+        "words": [
+            "self-increase",
+            "pencil-box"
+        ]
+    },
+    "24": {
+        "num": 11,
+        "words": [
+            "self-increase",
+            "pencil-box"
+        ]
+    },
+    "25": {
+        "num": 13,
+        "words": [
+            "self-increase",
+            "pencil-box"
+        ]
+    },
+    "26": {
+        "num": 13,
+        "words": [
+            "self-increase",
+            "pencil-box"
+        ]
+    },
+    "27": {
+        "num": 13,
+        "words": [
+            "self-increase",
+            "pencil-box"
+        ]
+    },
+    "28": {
+        "num": 13,
+        "words": [
+            "self-increase",
+            "pencil-box"
+        ]
+    },
+    "29": {
+        "num": 13,
+        "words": [
+            "self-increase",
+            "pencil-box"
         ]
     },
     "3": {
         "num": 1,
-        "time": 10.666666984558105,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
+        ]
+    },
+    "30": {
+        "num": 15,
+        "words": [
+            "self-increase",
+            "pencil-box"
         ]
     },
     "4": {
         "num": 3,
-        "time": 9.904762268066406,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     },
     "5": {
         "num": 5,
-        "time": 9.244444847106934,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     },
     "6": {
         "num": 5,
-        "time": 8.666666984558105,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     },
     "7": {
         "num": 5,
-        "time": 8.15686321258545,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     },
     "8": {
         "num": 5,
-        "time": 7.703703880310059,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     },
     "9": {
         "num": 5,
-        "time": 7.298245429992676,
         "words": [
+            "a",
             "sad",
-            "am",
+            "zero",
+            "bus",
+            "jeep",
+            "jack",
+            "car",
+            "cake",
+            "pear",
             "this",
-            "name",
-            "save"
+            "can",
+            "four",
+            "five",
+            "old"
         ]
     }
 }

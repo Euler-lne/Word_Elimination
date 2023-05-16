@@ -1,5 +1,6 @@
 #include "maker.h"
 #include "savemanager.h"
+using namespace my_maker;
 
 Maker::Maker(QString _name) : Player(_name)
 {

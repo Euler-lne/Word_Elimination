@@ -28,7 +28,7 @@ private:
     AnswerWindow *answerWindow;
     MakerWindow *makerWindow;
 
-public slots:
+private slots:
     void ClickLogin();
     void ClickEnroll();
 };

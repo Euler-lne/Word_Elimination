@@ -11,13 +11,16 @@ public:
     Player(QString);
     int GetLevelNum(){return levelNum;}
     int GetGrade(){return grade;}
+    void IncreaseLevelNum() {levelNum++;}
 
 protected:
     PlayerType playerType;
     QString name;
+    QJsonObject data;
     int levelNum;
     int grade;
-    QJsonObject data;
+
+
 };
 
 #endif // PLAYER_H

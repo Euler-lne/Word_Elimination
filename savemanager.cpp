@@ -368,7 +368,7 @@ int SaveManager::SavePlayerMaker(const QString _name, const QJsonObject _makerDa
     return OK;
 }
 
-int SaveManager::SaveLevel(QString _word)
+int SaveManager::AddWord(QString _word)
 {
     QString path = PATH + "/data/level.json";
     QFile file1(path);
@@ -395,14 +395,14 @@ int SaveManager::SaveLevel(QString _word)
         {
             level = object.value(iString).toObject();
             arry = level["words"].toArray();
+            if(arry.contains(_word))
+                return EXIST;
             arry.append(_word);
             level["words"] = arry;
             object[iString] = level;
         }
         else
         {
-            //每关时间的产生
-            float tempTime = 6.5 * ((len / 5.0 + 1)/3) * (4.0/(i/10.0 + 1));
             int tempNum = 0;
             switch (i/5)
             {
@@ -446,7 +446,6 @@ int SaveManager::SaveLevel(QString _word)
             QJsonArray words;
             words.append(_word);
             level["num"] = tempNum;
-            level["time"] = tempTime; //暂时设置为10
             level["words"] = words;
             object.insert(iString, level);
         }

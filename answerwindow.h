@@ -6,7 +6,6 @@ class StartGame;
 #include <QWidget>
 #include <QJsonObject>
 #include <QString>
-#include "answer.h"
 #include "startgame.h"
 
 namespace Ui {
@@ -20,20 +19,19 @@ class AnswerWindow : public QWidget
 public:
     explicit AnswerWindow(QWidget *parent = 0);
     ~AnswerWindow();
-    void SetPlayerName(QString);
+    void SetPlayerName(QString _name){playerName = _name;}
 
 private:
     Ui::AnswerWindow *ui;
     void InitConnect();
     QString playerName;
-    my_answer::Answer *answer;
     StartGame *startGame;
 
-public slots:
+private slots:
     void ClickStartBtn();
     void ClickRankBtn();
     void ClickAccountBtn();
-    void SeletLevelToThis();
+    void StartGameToThis();
 };
 
 #endif // ANSWERWINDOW_H

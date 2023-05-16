@@ -166,6 +166,7 @@ void Widget::SwitchWindow(int _type)
     }
     else
     {
+        makerWindow->SetPlayerName(ui->account->text());
         this->hide();
         makerWindow->show();
         makerWindow->setGeometry(this->geometry());

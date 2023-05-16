@@ -14,7 +14,7 @@ public:
     static int LoadLevel(const int, QJsonObject &);
     static int SavePlayerMaker(const QString,const QJsonObject);
     static int SavePlayerAnswer(const QString, const QJsonObject);
-    static int SaveLevel(QString);
+    static int AddWord(QString);
     static int RemoveUser(const QString);
     static int RemovePlayer(const QString);
     static const QString PATH;
