@@ -32,7 +32,7 @@ SOURCES += \
     player.cpp \
     answer.cpp \
     maker.cpp \
-    selectlevel.cpp
+    startgame.cpp
 
 HEADERS += \
         widget.h \
@@ -42,10 +42,10 @@ HEADERS += \
     player.h \
     answer.h \
     maker.h \
-    selectlevel.h
+    startgame.h
 
 FORMS += \
         widget.ui \
     answerwindow.ui \
     makerwindow.ui \
-    selectlevel.ui
+    startgame.ui

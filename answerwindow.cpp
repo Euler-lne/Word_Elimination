@@ -11,7 +11,7 @@ AnswerWindow::AnswerWindow(QWidget *parent) :
     ui->setupUi(this);
     //防止用到空指针，把初始化变量放在前面
     answer = NULL;
-    selectLevel = new SelectLevel();//放到InitConnect的前面
+    startGame = new StartGame();//放到InitConnect的前面
     InitConnect();
 }
 
@@ -19,10 +19,10 @@ AnswerWindow::~AnswerWindow()
 {
     if(answer != NULL)
         delete answer;
-    if(selectLevel != NULL)
-        delete selectLevel;
+    if(startGame != NULL)
+        delete startGame;
     answer = NULL;
-    selectLevel = NULL;
+    startGame = NULL;
     delete ui;
 }
 void AnswerWindow::InitConnect()
@@ -30,7 +30,7 @@ void AnswerWindow::InitConnect()
     connect(ui->startBtn,&QPushButton::clicked,this,&AnswerWindow::ClickStartBtn);
     connect(ui->rankBtn,&QPushButton::clicked,this,&AnswerWindow::ClickRankBtn);
     connect(ui->accountBtn,&QPushButton::clicked,this,&AnswerWindow::ClickAccountBtn);
-    connect(selectLevel,&SelectLevel::BackToMenu,this,&AnswerWindow::SeletLevelToThis);
+    connect(startGame,&StartGame::BackToMenu,this,&AnswerWindow::SeletLevelToThis);
 }
 ///
 /// \brief AnswerWindow::ClickStartBtn
@@ -38,10 +38,10 @@ void AnswerWindow::InitConnect()
 void AnswerWindow::ClickStartBtn()
 {
     this->hide();
-    selectLevel->show();
-    selectLevel->setGeometry(this->geometry());
+    startGame->show();
+    startGame->setGeometry(this->geometry());
     answer->UpdateData();
-    selectLevel->SetPlayerName(playerName);
+    startGame->InitStartGame(playerName);
 }
 void AnswerWindow::ClickRankBtn()
 {
@@ -64,9 +64,9 @@ void AnswerWindow::SetPlayerName(QString _name)
 void AnswerWindow::SeletLevelToThis()
 {
     answer->LoadData();
-    selectLevel->hide();
+    startGame->hide();
     this->show();
-    this->setGeometry(selectLevel->geometry());
+    this->setGeometry(startGame->geometry());
 }
 
 

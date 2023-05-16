@@ -246,6 +246,33 @@ int SaveManager::LoadPlayerMaker(const QString _name, QJsonObject &_makerData)
     return OK;
 }
 
+int SaveManager::LoadLevel(const int _level, QJsonObject & _levelData)
+{
+    QString path = PATH + "/data/level.json";
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file);
+    QString jsonString = in.readAll();
+    file.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    QString levelString = QString::number(_level);
+    if(object.contains(levelString))
+    {
+        QJsonObject level = object.value(levelString).toObject();
+        _levelData = level;
+    }
+    else
+    {
+        return NOT_EXIST;
+    }
+    return OK;
+}
+
 int SaveManager::SavePlayerAnswer(const QString _name, const QJsonObject _answerData)
 {
     QString path = PATH + "/data/player.json";
@@ -341,4 +368,97 @@ int SaveManager::SavePlayerMaker(const QString _name, const QJsonObject _makerDa
     return OK;
 }
 
-
+int SaveManager::SaveLevel(QString _word)
+{
+    QString path = PATH + "/data/level.json";
+    QFile file1(path);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file1);
+    QString jsonString = in.readAll();
+    file1.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    int len = _word.length();
+    if(len/5 >= 3)
+        len = 15;
+    //一共分出40关
+    for(int i = len / 5 * 10; i < len / 5 * 10 + 10;i++)
+    {
+        QJsonObject level;
+        QJsonArray arry;
+        QString iString = QString::number(i);
+        if(object.contains(iString))
+        {
+            level = object.value(iString).toObject();
+            arry = level["words"].toArray();
+            arry.append(_word);
+            level["words"] = arry;
+            object[iString] = level;
+        }
+        else
+        {
+            //每关时间的产生
+            float tempTime = 6.0 * ((len / 5.0 + 1)/3) * (4.0/(i/10.0 + 1));
+            int tempNum = 0;
+            switch (i/5)
+            {
+            case 0:
+                tempNum = 3;
+                break;
+            case 1:
+                tempNum = 5;
+                break;
+            case 2:
+                tempNum = 7;
+                break;
+            case 3:
+                tempNum = 9;
+                break;
+            case 4:
+                tempNum = 11;
+                break;
+            case 5:
+                tempNum = 13;
+                break;
+            case 6:
+                tempNum = 15;
+                break;
+            case 7:
+                tempNum = 17;
+                break;
+            default:
+                tempNum = 20;
+                break;
+            }
+            switch (i) {
+            case 1:
+            case 2:
+            case 3:
+                tempNum = 1;
+                break;
+            default:
+                break;
+            }
+            QJsonArray words;
+            words.append(_word);
+            level["num"] = tempNum;
+            level["time"] = tempTime; //暂时设置为10
+            level["words"] = words;
+            object.insert(iString, level);
+        }
+    }
+    doc.setObject(object);
+    QFile file2(path);
+    if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    file2.write(doc.toJson());
+    file2.close();
+    return OK;
+}

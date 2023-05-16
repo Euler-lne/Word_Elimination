@@ -1,13 +1,13 @@
 #ifndef ANSWERWINDOW_H
 #define ANSWERWINDOW_H
 
-class SelectLevel;
+class StartGame;
 
 #include <QWidget>
 #include <QJsonObject>
 #include <QString>
 #include "answer.h"
-#include "selectlevel.h"
+#include "startgame.h"
 
 namespace Ui {
 class AnswerWindow;
@@ -27,7 +27,7 @@ private:
     void InitConnect();
     QString playerName;
     my_answer::Answer *answer;
-    SelectLevel *selectLevel;
+    StartGame *startGame;
 
 public slots:
     void ClickStartBtn();

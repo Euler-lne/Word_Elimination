@@ -11,8 +11,10 @@ public:
     static int SaveUser(const QString,const QString,const int);
     static int LoadPlayerMaker(const QString,QJsonObject &);
     static int LoadPlayerAnswer(const QString,QJsonObject &);
+    static int LoadLevel(const int, QJsonObject &);
     static int SavePlayerMaker(const QString,const QJsonObject);
     static int SavePlayerAnswer(const QString, const QJsonObject);
+    static int SaveLevel(QString);
     static int RemoveUser(const QString);
     static int RemovePlayer(const QString);
     static const QString PATH;
