@@ -28,6 +28,9 @@ void Widget::InitConnect()
 {
     connect(ui->login,&QPushButton::clicked,this,&Widget::ClickLogin);
     connect(ui->enroll,&QPushButton::clicked,this,&Widget::ClickEnroll);
+    connect(answerWindow,&AnswerWindow::BackToLogin,this,&Widget::AnswerToThis);
+    connect(makerWindow,&MakerWindow::BackToLogin,this,&Widget::MakerToThis);
+
 }
 ///
 /// \brief Widget::ClickLogin
@@ -159,14 +162,14 @@ void Widget::SwitchWindow(int _type)
     //闯关者
     if(_type == 1)
     {
-        answerWindow->SetPlayerName(ui->account->text());
+        answerWindow->InitAnswerWindow(ui->account->text());
         this->hide();
         answerWindow->show();
         answerWindow->setGeometry(this->geometry());
     }
     else
     {
-        makerWindow->SetPlayerName(ui->account->text());
+        makerWindow->InitMakerWindow(ui->account->text());
         this->hide();
         makerWindow->show();
         makerWindow->setGeometry(this->geometry());
@@ -187,4 +190,21 @@ bool Widget::ConfirmPassword()
    else
        return false;
 
+}
+void Widget::AnswerToThis()
+{
+
+    answerWindow->hide();
+    this->show();
+    this->setGeometry(answerWindow->geometry());
+    ui->account->setText("");
+    ui->password->setText("");
+}
+void Widget::MakerToThis()
+{
+    makerWindow->hide();
+    this->show();
+    this->setGeometry(makerWindow->geometry());
+    ui->account->setText("");
+    ui->password->setText("");
 }

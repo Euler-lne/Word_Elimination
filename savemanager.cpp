@@ -241,6 +241,7 @@ int SaveManager::LoadPlayerMaker(const QString _name, QJsonObject &_makerData)
     {
         _makerData.insert(LEVEL_NUM, 0);
         _makerData.insert(GRADE, 0);
+        _makerData.insert(EXP,0);
         SavePlayerMaker(_name, _makerData);
     }
     return OK;
@@ -304,6 +305,7 @@ int SaveManager::SavePlayerAnswer(const QString _name, const QJsonObject _answer
         answer = _answerData;
         maker.insert(LEVEL_NUM,0);
         maker.insert(GRADE,0);
+        maker.insert(EXP,0);
         player.insert(ANSWER,answer);
         player.insert(MAKER,maker);
         object.insert(_name,player);

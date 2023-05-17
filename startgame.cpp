@@ -19,12 +19,9 @@ StartGame::StartGame(QWidget *parent) :
 StartGame::~StartGame()
 {
     delete ui;
-    if(answer != NULL)
-        delete answer;
     if(randArray != NULL)
         delete []randArray;
     randArray = NULL;
-    answer = NULL;
 }
 void StartGame::InitConnect()
 {
@@ -40,11 +37,9 @@ void StartGame::ClickBackMenuBtn()
 }
 
 /// 来到此窗口
-void StartGame::InitStartGame(QString _name)
+void StartGame::InitStartGame(my_answer::Answer* _answer)
 {
-    playerName = _name;
-    if(answer == NULL)
-        answer = new my_answer::Answer(_name);
+    answer = _answer;
     UpdateUI();
     int key;
     levelNum = 1;
@@ -55,7 +50,7 @@ void StartGame::InitStartGame(QString _name)
 
 void StartGame::UpdateUI()
 {
-    ui->accountLab->setText(playerName);
+    ui->accountLab->setText(answer->GetName());
     ui->gradeLab->setText(QString::number(answer->GetGrade()));
     ui->expLab->setText(QString::number(answer->GetEXP()));
 }
@@ -133,6 +128,8 @@ void StartGame::ClickConfirmBtn()
                 //最后一个正确下一关
                 ui->confrimBtn->setText("下一关");//一共只有40关
                 QString tempString = "该关卡剩余单词：" + QString::number(leftWord);
+                ui->playInput->setEnabled(false);
+                ui->playInput->setText("");
                 ui->leftWord->setText(tempString);
                 levelNum ++;
                 //玩家相关属性改变

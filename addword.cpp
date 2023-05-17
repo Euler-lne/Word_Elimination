@@ -15,9 +15,6 @@ AddWord::AddWord(QWidget *parent) :
 AddWord::~AddWord()
 {
     delete ui;
-    if(maker != NULL)
-        delete maker;
-    maker = NULL;
 }
 
 void AddWord::ClickBackBtn()
@@ -46,13 +43,10 @@ void AddWord::ClickConfirmBtn()
         UpdateUI();
     }
 }
-void AddWord::InitAddWord(QString _name)
+void AddWord::InitAddWord(my_maker::Maker* _maker)
 {
-    playerName = _name;
-    if(maker == NULL)
-        maker = new my_maker::Maker(_name);
+    maker = _maker;
     UpdateUI();
-
 }
 
 void AddWord::InitConnect()
@@ -63,7 +57,7 @@ void AddWord::InitConnect()
 void AddWord::UpdateUI()
 {
     QString tempString;
-    ui->accountLab->setText(playerName);
+    ui->accountLab->setText(maker->GetName());
     tempString = QString::number(maker->GetLevelNum());
     ui->levelNumLab->setText(tempString);
 }

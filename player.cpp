@@ -5,3 +5,4 @@ Player::Player(QString _name) : name(_name)
 {
 }
 
+

@@ -16,12 +16,11 @@ class AddWord : public QWidget
 public:
     explicit AddWord(QWidget *parent = 0);
     ~AddWord();
-    void InitAddWord(QString);
+    void InitAddWord(my_maker::Maker*);
 
 private:
     Ui::AddWord *ui;
     my_maker::Maker *maker;
-    QString playerName;
 
     void ClickConfirmBtn();
     void ClickBackBtn();

@@ -19,7 +19,7 @@ class StartGame : public QWidget
 public:
     explicit StartGame(QWidget *parent = 0);
     ~StartGame();
-    void InitStartGame(QString);
+    void InitStartGame(my_answer::Answer*);
 
 public slots:
     void ClickBackMenuBtn();
@@ -32,7 +32,6 @@ signals:
 private:
     Ui::StartGame *ui;    
     my_answer::Answer *answer;
-    QString playerName;
     QString expectedWord;
     QJsonArray levelWords;
     QJsonObject levelData;
