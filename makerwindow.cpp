@@ -79,6 +79,8 @@ void MakerWindow::InitMakerWindow(QString _name)
 void MakerWindow::ClickLogin()
 {
     maker->UpdateData();
+    delete maker;
+    maker = NULL;
     emit BackToLogin();
 }
 void MakerWindow::RankWindowToThis()

@@ -84,6 +84,8 @@ void AnswerWindow::InitAnswerWindow(QString _name)
 void AnswerWindow::ClickLogin()
 {
     answer->UpdateData();
+    delete answer;
+    answer = NULL;
     emit BackToLogin();
 }
 void AnswerWindow::RankWindowToThis()
