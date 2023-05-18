@@ -54,6 +54,31 @@ int SaveManager::LoadUser(const QString _name, const QString _password, const in
     return PASSWORD_ERROR;
 }
 
+int SaveManager::LoadUserType(const QString _name, int &_type)
+{
+    QString path = PATH + "/data/user.json";
+    QFile file1(path);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file1);
+    QString jsonString = in.readAll();
+    file1.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    if(object.contains(_name))
+    {
+        _type = object.value(_name).toArray().at(1).toInt();
+        return OK;
+    }
+    else {
+        return NOT_EXIST;
+    }
+
+}
+
 int SaveManager::SaveUser(const QString _name, const QString _password, const int _type)
 {
     bool key = false;
@@ -461,5 +486,31 @@ int SaveManager::AddWord(QString _word)
     }
     file2.write(doc.toJson());
     file2.close();
+    return OK;
+}
+
+int SaveManager::LoadAllPlayerName(int &_playerNum, QString *_playerArry)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file);
+    QString jsonString = in.readAll();
+    file.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    _playerNum = object.length();
+    if(_playerArry == NULL)
+        _playerArry = new QString[_playerNum];
+    QJsonObject::Iterator it;
+    int i;
+    for(it=object.begin(),i=0;it!=object.end();it++,i++)
+    {
+        _playerArry[i]=it.key();
+    }
     return OK;
 }

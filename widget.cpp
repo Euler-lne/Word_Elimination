@@ -45,9 +45,9 @@ void Widget::ClickLogin()
 {
     int type;
     if(ui->isQuestionMaker->isChecked())
-        type = 0;
+        type = 0; //出题者
     else
-        type = 1;
+        type = 1; //闯关者
     int key = SaveManager::LoadUser(ui->account->text(),ui->password->text(),type);
     if(key == SaveManager::OK)
     {
@@ -130,9 +130,9 @@ void Widget::LoginTypeError(int _type)
 {
     QString temp;
     if(_type == 0)
-        temp = "您当前的账号为答题者，\n是否要升级为出题者和答题者？";
+        temp = "您当前的账号为闯关者，\n是否要升级为出题者和闯关者？";
     else
-        temp = "您当前的账号为出题者，\n是否要升级为出题者和答题者？";
+        temp = "您当前的账号为出题者，\n是否要升级为出题者和闯关者？";
     QMessageBox::StandardButton rb1 = QMessageBox::question(this,
                           tr("询问"),
                           temp,

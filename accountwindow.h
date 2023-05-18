@@ -34,6 +34,7 @@ private:
 
 private slots:
     void ClickBackMenu();
+    void ClickSearchBtn();
 
 signals:
     void BackToMenu();

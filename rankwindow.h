@@ -2,6 +2,7 @@
 #define RANKWINDOW_H
 
 #include <QWidget>
+#include <QJsonObject>
 
 namespace Ui {
 class RankWindow;
@@ -19,11 +20,19 @@ public:
 private:
     Ui::RankWindow *ui;
     bool isAnswer;
+    int playerNum;
+    int rankNum;
+    QString * playerArray;
+    QJsonObject playerData;
+
     void InitConnect();
     void UpdateUI();
+    void SortPlayerByGrade();
 
 private slots:
     void ClickBackMenuBtn();
+    void CheckSlotAnswer(bool _flag);
+    void CheckSlotMaker(bool _flag);
 
 signals:
     void BackToMenu();

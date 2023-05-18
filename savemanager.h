@@ -8,10 +8,12 @@ class SaveManager
 public:
     SaveManager();
     static int LoadUser(const QString,const QString,const int);
+    static int LoadUserType(const QString _name, int & _type);
     static int SaveUser(const QString,const QString,const int);
     static int LoadPlayerMaker(const QString,QJsonObject &);
     static int LoadPlayerAnswer(const QString,QJsonObject &);
     static int LoadLevel(const int, QJsonObject &);
+    static int LoadAllPlayerName(int &_playerNum,QString * _playerArry);
     static int SavePlayerMaker(const QString,const QJsonObject);
     static int SavePlayerAnswer(const QString, const QJsonObject);
     static int AddWord(QString);

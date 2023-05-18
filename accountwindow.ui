@@ -18,6 +18,55 @@
     <widget class="QWidget" name="widget_5" native="true">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QWidget" name="widget_7" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>搜索玩家：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="search"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="searchBtn">
+           <property name="text">
+            <string>搜索</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_12">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -258,11 +307,6 @@
           </spacer>
          </item>
         </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="widget_7" native="true">
-        <layout class="QHBoxLayout" name="horizontalLayout_8"/>
        </widget>
       </item>
       <item>
