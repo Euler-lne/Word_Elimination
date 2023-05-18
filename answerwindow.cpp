@@ -1,7 +1,6 @@
 #include "answerwindow.h"
 #include "ui_answerwindow.h"
 #include "savemanager.h"
-#include "answer.h"
 
 
 AnswerWindow::AnswerWindow(QWidget *parent) :
@@ -9,20 +8,21 @@ AnswerWindow::AnswerWindow(QWidget *parent) :
     ui(new Ui::AnswerWindow)
 {
     ui->setupUi(this);
-    //防止用到空指针，把初始化变量放在前面
-    answer = NULL;
     startGame = new StartGame();//放到InitConnect的前面
+    accountWindow = new AccountWindow();
+    rankWindow = new RankWindow();
+    answer = NULL;
     InitConnect();
 }
 
 AnswerWindow::~AnswerWindow()
 {
+    delete startGame;
+    delete accountWindow;
+    delete rankWindow;
     if(answer != NULL)
         delete answer;
-    if(startGame != NULL)
-        delete startGame;
     answer = NULL;
-    startGame = NULL;
     delete ui;
 }
 void AnswerWindow::InitConnect()
@@ -30,7 +30,10 @@ void AnswerWindow::InitConnect()
     connect(ui->startBtn,&QPushButton::clicked,this,&AnswerWindow::ClickStartBtn);
     connect(ui->rankBtn,&QPushButton::clicked,this,&AnswerWindow::ClickRankBtn);
     connect(ui->accountBtn,&QPushButton::clicked,this,&AnswerWindow::ClickAccountBtn);
-    connect(startGame,&StartGame::BackToMenu,this,&AnswerWindow::SeletLevelToThis);
+    connect(startGame,&StartGame::BackToMenu,this,&AnswerWindow::StartGameToThis);
+    connect(accountWindow,&AccountWindow::BackToMenu,this,&AnswerWindow::AccountWindowToThis);
+    connect(rankWindow,&RankWindow::BackToMenu,this,&AnswerWindow::RankWindowToThis);
+    connect(ui->loginBtn,&QPushButton::clicked,this,&AnswerWindow::ClickLogin);
 }
 ///
 /// \brief AnswerWindow::ClickStartBtn
@@ -40,33 +43,54 @@ void AnswerWindow::ClickStartBtn()
     this->hide();
     startGame->show();
     startGame->setGeometry(this->geometry());
-    answer->UpdateData();
-    startGame->InitStartGame(playerName);
+    startGame->InitStartGame(answer);
 }
 void AnswerWindow::ClickRankBtn()
 {
-
+    this->hide();
+    rankWindow->show();
+    rankWindow->setGeometry(this->geometry());
+    rankWindow->InitRankWindow(true);
 }
 void AnswerWindow::ClickAccountBtn()
 {
-    
+    this->hide();
+    accountWindow->show();
+    accountWindow->setGeometry(this->geometry());
+    accountWindow->InitAccountWindow(true,answer,NULL);
 }
 
-/// 来到此窗口
-void AnswerWindow::SetPlayerName(QString _name)
+
+/// 从选择关卡窗口回来
+void AnswerWindow::StartGameToThis()
+{
+    startGame->hide();
+    this->show();
+    this->setGeometry(startGame->geometry());
+}
+
+void AnswerWindow::AccountWindowToThis()
+{
+    accountWindow->hide();
+    this->show();
+    this->setGeometry(accountWindow->geometry());
+}
+void AnswerWindow::InitAnswerWindow(QString _name)
 {
     playerName = _name;
     if(answer == NULL)
         answer = new my_answer::Answer(_name);
 }
-
-/// 从选择关卡窗口回来
-void AnswerWindow::SeletLevelToThis()
+void AnswerWindow::ClickLogin()
 {
-    answer->LoadData();
-    startGame->hide();
+    answer->UpdateData();
+    emit BackToLogin();
+}
+void AnswerWindow::RankWindowToThis()
+{
+    rankWindow->hide();
     this->show();
-    this->setGeometry(startGame->geometry());
+    this->setGeometry(rankWindow->geometry());
 }
 
 

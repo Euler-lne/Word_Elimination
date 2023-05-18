@@ -32,7 +32,10 @@ SOURCES += \
     player.cpp \
     answer.cpp \
     maker.cpp \
-    startgame.cpp
+    startgame.cpp \
+    addword.cpp \
+    accountwindow.cpp \
+    rankwindow.cpp
 
 HEADERS += \
         widget.h \
@@ -42,10 +45,16 @@ HEADERS += \
     player.h \
     answer.h \
     maker.h \
-    startgame.h
+    startgame.h \
+    addword.h \
+    accountwindow.h \
+    rankwindow.h
 
 FORMS += \
         widget.ui \
     answerwindow.ui \
     makerwindow.ui \
-    startgame.ui
+    startgame.ui \
+    addword.ui \
+    accountwindow.ui \
+    rankwindow.ui

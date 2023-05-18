@@ -21,16 +21,19 @@ public:
 
 private:
     Ui::Widget *ui;
+    AnswerWindow *answerWindow;
+    MakerWindow *makerWindow;
+
     void InitConnect();
     void LoginTypeError(int);
     void SwitchWindow(int);
     bool ConfirmPassword();
-    AnswerWindow *answerWindow;
-    MakerWindow *makerWindow;
 
-public slots:
+private slots:
     void ClickLogin();
     void ClickEnroll();
+    void MakerToThis();
+    void AnswerToThis();
 };
 
 #endif // WIDGET_H

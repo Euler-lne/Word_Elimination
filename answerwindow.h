@@ -2,12 +2,16 @@
 #define ANSWERWINDOW_H
 
 class StartGame;
+class AccountWindow;
+class RankWindow;
 
 #include <QWidget>
 #include <QJsonObject>
 #include <QString>
 #include "answer.h"
 #include "startgame.h"
+#include "accountwindow.h"
+#include "rankwindow.h"
 
 namespace Ui {
 class AnswerWindow;
@@ -20,20 +24,28 @@ class AnswerWindow : public QWidget
 public:
     explicit AnswerWindow(QWidget *parent = 0);
     ~AnswerWindow();
-    void SetPlayerName(QString);
+    void InitAnswerWindow(QString _name);
 
 private:
     Ui::AnswerWindow *ui;
     void InitConnect();
     QString playerName;
-    my_answer::Answer *answer;
     StartGame *startGame;
+    AccountWindow *accountWindow;
+    RankWindow *rankWindow;
+    my_answer::Answer *answer;
 
-public slots:
+private slots:
     void ClickStartBtn();
     void ClickRankBtn();
     void ClickAccountBtn();
-    void SeletLevelToThis();
+    void StartGameToThis();
+    void AccountWindowToThis();
+    void RankWindowToThis();
+    void ClickLogin();
+
+signals:
+    void BackToLogin();
 };
 
 #endif // ANSWERWINDOW_H

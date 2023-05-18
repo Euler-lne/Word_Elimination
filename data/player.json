@@ -3,11 +3,12 @@
         "Answer": {
             "EXP": 0,
             "Grade": 0,
-            "Level Num": 1
+            "Level Num": 9
         },
         "Maker": {
+            "EXP": 0,
             "Grade": 0,
-            "Level Num": 0
+            "Level Num": 29
         }
     },
     "2": {
@@ -17,6 +18,7 @@
             "Level Num": 1
         },
         "Maker": {
+            "EXP": 0,
             "Grade": 0,
             "Level Num": 0
         }

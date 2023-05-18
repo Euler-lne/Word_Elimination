@@ -54,6 +54,31 @@ int SaveManager::LoadUser(const QString _name, const QString _password, const in
     return PASSWORD_ERROR;
 }
 
+int SaveManager::LoadUserType(const QString _name, int &_type)
+{
+    QString path = PATH + "/data/user.json";
+    QFile file1(path);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file1);
+    QString jsonString = in.readAll();
+    file1.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    if(object.contains(_name))
+    {
+        _type = object.value(_name).toArray().at(1).toInt();
+        return OK;
+    }
+    else {
+        return NOT_EXIST;
+    }
+
+}
+
 int SaveManager::SaveUser(const QString _name, const QString _password, const int _type)
 {
     bool key = false;
@@ -241,6 +266,7 @@ int SaveManager::LoadPlayerMaker(const QString _name, QJsonObject &_makerData)
     {
         _makerData.insert(LEVEL_NUM, 0);
         _makerData.insert(GRADE, 0);
+        _makerData.insert(EXP,0);
         SavePlayerMaker(_name, _makerData);
     }
     return OK;
@@ -304,6 +330,7 @@ int SaveManager::SavePlayerAnswer(const QString _name, const QJsonObject _answer
         answer = _answerData;
         maker.insert(LEVEL_NUM,0);
         maker.insert(GRADE,0);
+        maker.insert(EXP,0);
         player.insert(ANSWER,answer);
         player.insert(MAKER,maker);
         object.insert(_name,player);
@@ -368,7 +395,7 @@ int SaveManager::SavePlayerMaker(const QString _name, const QJsonObject _makerDa
     return OK;
 }
 
-int SaveManager::SaveLevel(QString _word)
+int SaveManager::AddWord(QString _word)
 {
     QString path = PATH + "/data/level.json";
     QFile file1(path);
@@ -395,14 +422,14 @@ int SaveManager::SaveLevel(QString _word)
         {
             level = object.value(iString).toObject();
             arry = level["words"].toArray();
+            if(arry.contains(_word))
+                return EXIST;
             arry.append(_word);
             level["words"] = arry;
             object[iString] = level;
         }
         else
         {
-            //每关时间的产生
-            float tempTime = 6.5 * ((len / 5.0 + 1)/3) * (4.0/(i/10.0 + 1));
             int tempNum = 0;
             switch (i/5)
             {
@@ -446,7 +473,6 @@ int SaveManager::SaveLevel(QString _word)
             QJsonArray words;
             words.append(_word);
             level["num"] = tempNum;
-            level["time"] = tempTime; //暂时设置为10
             level["words"] = words;
             object.insert(iString, level);
         }
@@ -460,5 +486,46 @@ int SaveManager::SaveLevel(QString _word)
     }
     file2.write(doc.toJson());
     file2.close();
+    return OK;
+}
+
+int SaveManager::LoadAllPlayerName(QString *_playerArry)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file);
+    QString jsonString = in.readAll();
+    file.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    QJsonObject::Iterator it;
+    int i;
+    for(it=object.begin(),i=0;it!=object.end();it++,i++)
+    {
+        _playerArry[i]=it.key();
+    }
+    return OK;
+}
+
+int SaveManager::LoadAllPlayerNum(int &_playerNum)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file);
+    QString jsonString = in.readAll();
+    file.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    _playerNum = object.length();
     return OK;
 }
