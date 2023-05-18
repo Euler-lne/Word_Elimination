@@ -10,6 +10,7 @@ namespace my_maker
         Maker(QString);
         void LoadData();
         void UpdateData();
+        void UpdateEXP(int _length);
     };
 }
 

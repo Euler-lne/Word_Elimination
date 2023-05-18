@@ -13,6 +13,7 @@ public:
     int GetLevelNum(){return levelNum;}
     int GetGrade(){return grade;}
     int GetEXP(){return exp;}
+    int GetMax(){return max;}
     void IncreaseLevelNum() {levelNum++;}
 
 
@@ -23,6 +24,9 @@ protected:
     int levelNum;
     int exp;
     int grade;
+    int max;
+
+    void UpdateGrade(){grade ++;}
 
 
 

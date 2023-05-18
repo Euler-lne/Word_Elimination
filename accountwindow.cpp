@@ -41,7 +41,7 @@ void AccountWindow::UpdateUI()
         ui->levelNum->setText("闯关数：");
         ui->type->setText("闯关者");
         ui->account->setText(answer->GetName());
-        tempString = QString::number(answer->GetEXP());
+        tempString = QString::number(answer->GetEXP())+"/"+QString::number(answer->GetMax());
         ui->exp->setText(tempString);
         tempString = QString::number(answer->GetGrade());
         ui->grade->setText(tempString);
@@ -54,7 +54,7 @@ void AccountWindow::UpdateUI()
         ui->levelNumLab->setText("出题数：");
         ui->type->setText("出题者");
         ui->account->setText(maker->GetName());
-        tempString = QString::number(maker->GetEXP());
+        tempString = QString::number(maker->GetEXP())+"/"+QString::number(maker->GetMax());
         ui->exp->setText(tempString);
         tempString = QString::number(maker->GetGrade());
         ui->grade->setText(tempString);

@@ -1,6 +1,7 @@
 #include "rankwindow.h"
 #include "ui_rankwindow.h"
 #include "savemanager.h"
+#include "math.h"
 #include <QDebug>
 
 RankWindow::RankWindow(QWidget *parent) :
@@ -136,6 +137,25 @@ void RankWindow::SortPlayerByGrade()
                 playerArray[j] = playerArray[j-1];
                 playerArray[j-1] = tempString;
             }
+            else if(cur == pre)
+            {
+                if(isAnswer)
+                    SaveManager::LoadPlayerAnswer(playerArray[j-1],playerData);
+                else
+                    SaveManager::LoadPlayerMaker(playerArray[j-1],playerData);
+                pre = playerData.value(SaveManager::EXP).toInt();
+                if(isAnswer)
+                    SaveManager::LoadPlayerAnswer(playerArray[j],playerData);
+                else
+                    SaveManager::LoadPlayerMaker(playerArray[j],playerData);
+                cur = playerData.value(SaveManager::EXP).toInt();
+                if(cur > pre)
+                {
+                    QString tempString = playerArray[j];
+                    playerArray[j] = playerArray[j-1];
+                    playerArray[j-1] = tempString;
+                }
+            }
         }
     }
 }
@@ -145,13 +165,16 @@ void RankWindow::SetQLabel()
     QString tempString;
     for(int i=0;i<rankNum;i++)
     {
-        tempString = tempString + "第" + QString::number(i+1) + "名" + "\t\t\t";
-        tempString = tempString + "用户名：" + playerArray[i] + '\t';
+        tempString = tempString + "第" + QString::number(i+1) + "名" + "\t\t";
+        tempString = tempString + "用户名：" + playerArray[i] + "   ";
         if(isAnswer)
             SaveManager::LoadPlayerAnswer(playerArray[i],playerData);
         else
             SaveManager::LoadPlayerMaker(playerArray[i],playerData);
-        tempString = tempString + "等级：" + QString::number(playerData.value(SaveManager::GRADE).toInt()) + '\n';
+        tempString = tempString + "等级：" + QString::number(playerData.value(SaveManager::GRADE).toInt()) + "   ";
+        int grade = playerData.value(SaveManager::GRADE).toInt();
+        int max = 10 * pow(2,grade/5 +2);
+        tempString = tempString + "经验：" + QString::number(playerData.value(SaveManager::EXP).toInt()) + "/" + QString::number(max) + "\n";
     }
     ui->rank->setText(tempString);
 }

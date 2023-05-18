@@ -1,21 +1,21 @@
 {
     "1": {
         "Answer": {
-            "EXP": 0,
-            "Grade": 0,
-            "Level Num": 12
+            "EXP": 15,
+            "Grade": 6,
+            "Level Num": 23
         },
         "Maker": {
             "EXP": 0,
             "Grade": 0,
-            "Level Num": 29
+            "Level Num": 30
         }
     },
     "2": {
         "Answer": {
-            "EXP": 0,
-            "Grade": 0,
-            "Level Num": 1
+            "EXP": 5,
+            "Grade": 1,
+            "Level Num": 3
         },
         "Maker": {
             "EXP": 0,
@@ -25,9 +25,9 @@
     },
     "py": {
         "Answer": {
-            "EXP": 0,
+            "EXP": 25,
             "Grade": 0,
-            "Level Num": 5
+            "Level Num": 6
         },
         "Maker": {
             "EXP": 0,

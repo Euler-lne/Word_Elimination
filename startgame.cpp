@@ -52,7 +52,7 @@ void StartGame::UpdateUI()
 {
     ui->accountLab->setText(answer->GetName());
     ui->gradeLab->setText(QString::number(answer->GetGrade()));
-    ui->expLab->setText(QString::number(answer->GetEXP()));
+    ui->expLab->setText(QString::number(answer->GetEXP())+"/"+QString::number(answer->GetMax()));
 }
 
 int StartGame::SetLevel(int _level)
@@ -87,7 +87,7 @@ void StartGame::SetWord(int _index)
     ui->playInput->setText("");
     ui->confrimBtn->setEnabled(false);
     int len = expectedWord.length();
-    levelTime =  6.5 * ((len / 5.0 + 1)/3) * (4.0/(levelNum/10.0 + 1)); //每一个单词的时间都不一样
+    levelTime =  5.5 * ((len / 5.0 + 1)/3) * (4.0/(levelNum/10.0 + 1)); //每一个单词的时间都不一样
     startTime = QTime::currentTime();
     timerID = startTimer(100);
 }
@@ -116,13 +116,16 @@ void StartGame::WordTimeOut()
 void StartGame::ClickConfirmBtn()
 {
     if(leftWord == 0)   //这里要放到外面来判断
+    {
         SetLevel(levelNum);
+    }
     else
     {
         if(expectedWord == ui->playInput->text())
         {
             //正确
             leftWord--;
+            answer->UpdateEXP(levelNum,expectedWord.length());
             if(leftWord == 0)   //这个只是改变了名称，需要再按一次，再按一次的时候leftWord已经为0
             {
                 //最后一个正确下一关
@@ -131,6 +134,7 @@ void StartGame::ClickConfirmBtn()
                 ui->playInput->setEnabled(false);
                 ui->playInput->setText("");
                 ui->leftWord->setText(tempString);
+                answer->UpdateEXP(levelNum,-1);
                 levelNum ++;
                 //玩家相关属性改变
                 answer->IncreaseLevelNum();
@@ -138,14 +142,15 @@ void StartGame::ClickConfirmBtn()
             }
             else
             {
-                SetWord(leftWord-1);
+                SetWord(randArray[leftWord-1]);
             }
         }
         else
         {
-            SetWord(leftWord - 1);
+            SetWord(randArray[leftWord-1]);
         }
     }
+    UpdateUI();
 }
 void StartGame::timerEvent(QTimerEvent *t)
 {

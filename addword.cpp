@@ -37,6 +37,7 @@ void AddWord::ClickConfirmBtn()
     }
     if(tempInt == SaveManager::OK)
     {
+        maker->UpdateEXP(ui->word->text().length());
         maker->IncreaseLevelNum();
         maker->UpdateData();
         ui->word->setText("");
@@ -60,4 +61,8 @@ void AddWord::UpdateUI()
     ui->accountLab->setText(maker->GetName());
     tempString = QString::number(maker->GetLevelNum());
     ui->levelNumLab->setText(tempString);
+    tempString = QString::number(maker->GetEXP())+"/"+QString::number(maker->GetMax());
+    ui->expLab->setText(tempString);
+    tempString = QString::number(maker->GetGrade());
+    ui->gradeLab->setText(tempString);
 }
