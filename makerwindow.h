@@ -6,7 +6,9 @@
 #include "maker.h"
 #include "addword.h"
 #include "accountwindow.h"
+#include "rankwindow.h"
 class AccountWindow;
+class RankWindow;
 
 namespace Ui {
 class MakerWindow;
@@ -26,6 +28,7 @@ private:
     QString playerName;
     AddWord *addWord;
     AccountWindow *accountWindow;
+    RankWindow *rankWindow;
     my_maker::Maker *maker;
 
     void InitConnect();
@@ -37,6 +40,7 @@ private slots:
     void ClickAccountBtn();
     void ClickLogin();
     void AddWordToThis();
+    void RankWindowToThis();
     void AccountWindowToThis();
 
 signals:

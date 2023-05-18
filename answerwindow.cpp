@@ -10,6 +10,7 @@ AnswerWindow::AnswerWindow(QWidget *parent) :
     ui->setupUi(this);
     startGame = new StartGame();//放到InitConnect的前面
     accountWindow = new AccountWindow();
+    rankWindow = new RankWindow();
     answer = NULL;
     InitConnect();
 }
@@ -18,6 +19,7 @@ AnswerWindow::~AnswerWindow()
 {
     delete startGame;
     delete accountWindow;
+    delete rankWindow;
     if(answer != NULL)
         delete answer;
     answer = NULL;
@@ -30,6 +32,7 @@ void AnswerWindow::InitConnect()
     connect(ui->accountBtn,&QPushButton::clicked,this,&AnswerWindow::ClickAccountBtn);
     connect(startGame,&StartGame::BackToMenu,this,&AnswerWindow::StartGameToThis);
     connect(accountWindow,&AccountWindow::BackToMenu,this,&AnswerWindow::AccountWindowToThis);
+    connect(rankWindow,&RankWindow::BackToMenu,this,&AnswerWindow::RankWindowToThis);
     connect(ui->loginBtn,&QPushButton::clicked,this,&AnswerWindow::ClickLogin);
 }
 ///
@@ -44,7 +47,10 @@ void AnswerWindow::ClickStartBtn()
 }
 void AnswerWindow::ClickRankBtn()
 {
-
+    this->hide();
+    rankWindow->show();
+    rankWindow->setGeometry(this->geometry());
+    rankWindow->InitRankWindow(true);
 }
 void AnswerWindow::ClickAccountBtn()
 {
@@ -79,6 +85,12 @@ void AnswerWindow::ClickLogin()
 {
     answer->UpdateData();
     emit BackToLogin();
+}
+void AnswerWindow::RankWindowToThis()
+{
+    rankWindow->hide();
+    this->show();
+    this->setGeometry(rankWindow->geometry());
 }
 
 
