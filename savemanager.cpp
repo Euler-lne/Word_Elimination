@@ -489,7 +489,30 @@ int SaveManager::AddWord(QString _word)
     return OK;
 }
 
-int SaveManager::LoadAllPlayerName(int &_playerNum, QString *_playerArry)
+int SaveManager::LoadAllPlayerName(QString *_playerArry)
+{
+    QString path = PATH + "/data/player.json";
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return ERROR;
+    }
+    QTextStream in(&file);
+    QString jsonString = in.readAll();
+    file.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonObject object = doc.object();
+    QJsonObject::Iterator it;
+    int i;
+    for(it=object.begin(),i=0;it!=object.end();it++,i++)
+    {
+        _playerArry[i]=it.key();
+    }
+    return OK;
+}
+
+int SaveManager::LoadAllPlayerNum(int &_playerNum)
 {
     QString path = PATH + "/data/player.json";
     QFile file(path);
@@ -504,13 +527,5 @@ int SaveManager::LoadAllPlayerName(int &_playerNum, QString *_playerArry)
     QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
     QJsonObject object = doc.object();
     _playerNum = object.length();
-    if(_playerArry == NULL)
-        _playerArry = new QString[_playerNum];
-    QJsonObject::Iterator it;
-    int i;
-    for(it=object.begin(),i=0;it!=object.end();it++,i++)
-    {
-        _playerArry[i]=it.key();
-    }
     return OK;
 }

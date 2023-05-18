@@ -28,6 +28,7 @@ private:
     void InitConnect();
     void UpdateUI();
     void SortPlayerByGrade();
+    void SetQLabel();
 
 private slots:
     void ClickBackMenuBtn();

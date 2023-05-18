@@ -13,7 +13,8 @@ public:
     static int LoadPlayerMaker(const QString,QJsonObject &);
     static int LoadPlayerAnswer(const QString,QJsonObject &);
     static int LoadLevel(const int, QJsonObject &);
-    static int LoadAllPlayerName(int &_playerNum,QString * _playerArry);
+    static int LoadAllPlayerName(QString * _playerArry);
+    static int LoadAllPlayerNum(int &_playerNum);
     static int SavePlayerMaker(const QString,const QJsonObject);
     static int SavePlayerAnswer(const QString, const QJsonObject);
     static int AddWord(QString);

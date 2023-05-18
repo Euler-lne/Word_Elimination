@@ -1,6 +1,7 @@
 #include "rankwindow.h"
 #include "ui_rankwindow.h"
 #include "savemanager.h"
+#include <QDebug>
 
 RankWindow::RankWindow(QWidget *parent) :
     QWidget(parent),
@@ -8,7 +9,6 @@ RankWindow::RankWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     playerArray = NULL;
-    SaveManager::LoadAllPlayerName(playerNum, playerArray);
     InitConnect();
 }
 
@@ -32,8 +32,15 @@ void RankWindow::ClickBackMenuBtn()
     emit BackToMenu();
 }
 void RankWindow::InitRankWindow(bool _isAnswer)
-{
+{   
     isAnswer = _isAnswer;
+    if(playerArray != NULL)
+        delete []playerArray;
+    playerArray = NULL;
+    playerNum = 0;
+    SaveManager::LoadAllPlayerNum(playerNum);
+    playerArray = new QString[playerNum];
+    SaveManager::LoadAllPlayerName(playerArray);
     ui->answerRadio->setChecked(isAnswer);
     ui->makerRadio->setChecked(!isAnswer);
     UpdateUI();
@@ -83,7 +90,7 @@ void RankWindow::UpdateUI()
         }
         SortPlayerByGrade();
     }
-
+    SetQLabel();
 }
 
 void RankWindow::CheckSlotAnswer(bool _flag)
@@ -131,4 +138,20 @@ void RankWindow::SortPlayerByGrade()
             }
         }
     }
+}
+
+void RankWindow::SetQLabel()
+{
+    QString tempString;
+    for(int i=0;i<rankNum;i++)
+    {
+        tempString = tempString + "第" + QString::number(i+1) + "名" + "\t\t\t";
+        tempString = tempString + "用户名：" + playerArray[i] + '\t';
+        if(isAnswer)
+            SaveManager::LoadPlayerAnswer(playerArray[i],playerData);
+        else
+            SaveManager::LoadPlayerMaker(playerArray[i],playerData);
+        tempString = tempString + "等级：" + QString::number(playerData.value(SaveManager::GRADE).toInt()) + '\n';
+    }
+    ui->rank->setText(tempString);
 }
