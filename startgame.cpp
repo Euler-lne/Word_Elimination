@@ -136,8 +136,9 @@ void StartGame::ClickConfirmBtn()
                 ui->leftWord->setText(tempString);
                 answer->UpdateEXP(levelNum,-1);
                 levelNum ++;
-                //玩家相关属性改变
-                answer->IncreaseLevelNum();
+                //玩家相关属性改变，因为当前的关卡数已经增加，所以只有当前关卡数大于玩家自生关数才会增加
+                if(levelNum > answer->GetLevelNum())
+                    answer->IncreaseLevelNum();
                 answer->UpdateData();
             }
             else
