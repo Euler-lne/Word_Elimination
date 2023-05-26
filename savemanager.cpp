@@ -167,9 +167,13 @@ int SaveManager::RemoveUser(const QString _name)
     QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
     QJsonObject object = doc.object();
     if(object.contains(_name))
+    {
         object.remove(_name);
+    }
     else
     {
+        doc.setObject(object);
+        file2.write(doc.toJson());
         file2.close();
         return NOT_EXIST;
     }
@@ -203,6 +207,8 @@ int SaveManager::RemovePlayer(const QString _name)
         object.remove(_name);
     else
     {
+        doc.setObject(object);
+        file2.write(doc.toJson());
         file2.close();
         return NOT_EXIST;
     }

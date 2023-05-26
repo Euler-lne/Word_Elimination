@@ -20,12 +20,14 @@ public:
     explicit AccountWindow(QWidget *parent = 0);
     ~AccountWindow();
     void InitAccountWindow(bool _isAnswer, my_answer::Answer* _answer = NULL, my_maker::Maker* _maker = NULL);
+    bool GetQuit(){return quit;}
 
 private:
     Ui::AccountWindow *ui;
     my_answer::Answer *answer;
     my_maker::Maker *maker;
     bool isAnswer;
+    bool quit;
 
 
     void InitConnect();
@@ -35,6 +37,7 @@ private:
 private slots:
     void ClickBackMenu();
     void ClickSearchBtn();
+    void ClickLogoutBtn();
 
 signals:
     void BackToMenu();

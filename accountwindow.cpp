@@ -12,6 +12,7 @@ AccountWindow::AccountWindow(QWidget *parent) :
     answer = NULL;
     maker = NULL;
     InitConnect();
+    quit = false;
 }
 
 AccountWindow::~AccountWindow()
@@ -68,6 +69,7 @@ void AccountWindow::InitConnect()
 {
     connect(ui->backMenuBtn,&QPushButton::clicked,this,&AccountWindow::ClickBackMenu);
     connect(ui->searchBtn,&QPushButton::clicked,this,&AccountWindow::ClickSearchBtn);
+    connect(ui->logoutBtn,&QPushButton::clicked,this,&AccountWindow::ClickLogoutBtn);
 }
 
 void AccountWindow::ClickSearchBtn()
@@ -118,4 +120,33 @@ void AccountWindow::ClickSearchBtn()
         }
         QMessageBox::information(this,tr("消息"),tempString);
     }
+}
+
+void AccountWindow::ClickLogoutBtn()
+{
+//    int type;
+//    if(ui->isQuestionMaker->isChecked())
+//        type = 0; //出题者
+//    else
+//        type = 1; //闯关者
+    bool key;
+    QMessageBox mess(QMessageBox::Question, tr("询问"), tr("是否确定要删除账户信息？\n若账户同为答题者和出题者账户都会删除！\n请三思！"));
+    QPushButton *button1= (mess.addButton(tr("是"), QMessageBox::AcceptRole));
+    QPushButton *button2= (mess.addButton(tr("否"), QMessageBox::YesRole));
+    mess.exec();
+    if (mess.clickedButton() == button1)
+        key = true;
+    else if (mess.clickedButton() == button2)
+        key = false;
+    if(key == false)
+        return;
+    QString tempString;
+    if(isAnswer)
+        tempString = answer->GetName();
+    else
+        tempString = maker->GetName();
+    SaveManager::RemoveUser(tempString);
+    SaveManager::RemovePlayer(tempString);
+    quit = true;
+    emit BackToMenu();
 }

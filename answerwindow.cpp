@@ -74,6 +74,8 @@ void AnswerWindow::AccountWindowToThis()
     accountWindow->hide();
     this->show();
     this->setGeometry(accountWindow->geometry());
+    if(accountWindow->GetQuit())
+        emit BackToLogin();
 }
 void AnswerWindow::InitAnswerWindow(QString _name)
 {

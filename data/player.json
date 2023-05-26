@@ -1,9 +1,9 @@
 {
     "1": {
         "Answer": {
-            "EXP": 55,
-            "Grade": 7,
-            "Level Num": 4
+            "EXP": 65,
+            "Grade": 16,
+            "Level Num": 21
         },
         "Maker": {
             "EXP": 0,
@@ -13,9 +13,9 @@
     },
     "2": {
         "Answer": {
-            "EXP": 5,
-            "Grade": 1,
-            "Level Num": 3
+            "EXP": 0,
+            "Grade": 0,
+            "Level Num": 1
         },
         "Maker": {
             "EXP": 0,

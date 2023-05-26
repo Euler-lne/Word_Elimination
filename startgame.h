@@ -7,6 +7,9 @@
 #include <QJsonArray>
 #include <QTimer>
 #include <QTime>
+#include <QKeyEvent>
+
+enum GameType{ENDLESS,CHANLLENGE};
 
 namespace Ui {
 class StartGame;
@@ -36,10 +39,13 @@ private:
     QJsonArray levelWords;
     QJsonObject levelData;
     QTime startTime;
+    GameType gameType;
     int levelNum;
     int leftWord;
     int timerID;
+    int challengerTimerID;
     int *randArray;
+    bool canPressEnter;
     float levelTime;
 
     void InitConnect();
@@ -48,6 +54,8 @@ private:
     void SetRandArray(int _len);
     void WordTimeOut();
     void timerEvent(QTimerEvent* t);
+    void keyPressEvent(QKeyEvent *event);
+    void SelectGameType();
     int SetLevel(int _level);
 
 };
