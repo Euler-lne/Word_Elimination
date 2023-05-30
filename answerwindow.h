@@ -12,6 +12,7 @@ class RankWindow;
 #include "startgame.h"
 #include "accountwindow.h"
 #include "rankwindow.h"
+#include "multiplayerwindow.h"
 
 namespace Ui {
 class AnswerWindow;
@@ -33,6 +34,7 @@ private:
     StartGame *startGame;
     AccountWindow *accountWindow;
     RankWindow *rankWindow;
+    MultiplayerWindow *multiplayerWindow;
     my_answer::Answer *answer;
 
 private slots:
@@ -43,6 +45,8 @@ private slots:
     void AccountWindowToThis();
     void RankWindowToThis();
     void ClickLogin();
+    void ClickMultiplayerBtn();
+    void MultiplayerWindowToThis();
 
 signals:
     void BackToLogin();

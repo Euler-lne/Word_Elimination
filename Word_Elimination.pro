@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -35,7 +35,8 @@ SOURCES += \
     startgame.cpp \
     addword.cpp \
     accountwindow.cpp \
-    rankwindow.cpp
+    rankwindow.cpp \
+    multiplayerwindow.cpp
 
 HEADERS += \
         widget.h \
@@ -48,7 +49,8 @@ HEADERS += \
     startgame.h \
     addword.h \
     accountwindow.h \
-    rankwindow.h
+    rankwindow.h \
+    multiplayerwindow.h
 
 FORMS += \
         widget.ui \
@@ -57,4 +59,5 @@ FORMS += \
     startgame.ui \
     addword.ui \
     accountwindow.ui \
-    rankwindow.ui
+    rankwindow.ui \
+    multiplayerwindow.ui

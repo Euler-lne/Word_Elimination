@@ -11,6 +11,7 @@ AnswerWindow::AnswerWindow(QWidget *parent) :
     startGame = new StartGame();//放到InitConnect的前面
     accountWindow = new AccountWindow();
     rankWindow = new RankWindow();
+    multiplayerWindow = new MultiplayerWindow();
     answer = NULL;
     InitConnect();
 }
@@ -20,6 +21,7 @@ AnswerWindow::~AnswerWindow()
     delete startGame;
     delete accountWindow;
     delete rankWindow;
+    delete multiplayerWindow;
     if(answer != NULL)
         delete answer;
     answer = NULL;
@@ -34,6 +36,8 @@ void AnswerWindow::InitConnect()
     connect(accountWindow,&AccountWindow::BackToMenu,this,&AnswerWindow::AccountWindowToThis);
     connect(rankWindow,&RankWindow::BackToMenu,this,&AnswerWindow::RankWindowToThis);
     connect(ui->loginBtn,&QPushButton::clicked,this,&AnswerWindow::ClickLogin);
+    connect(ui->multiplayerBtn,&QPushButton::clicked,this,&AnswerWindow::ClickMultiplayerBtn);
+    connect(multiplayerWindow,&MultiplayerWindow::BackToMenu,this,&AnswerWindow::MultiplayerWindowToThis);
 }
 ///
 /// \brief AnswerWindow::ClickStartBtn
@@ -95,6 +99,21 @@ void AnswerWindow::RankWindowToThis()
     rankWindow->hide();
     this->show();
     this->setGeometry(rankWindow->geometry());
+}
+
+void AnswerWindow::ClickMultiplayerBtn()
+{
+    this->hide();
+    multiplayerWindow->show();
+    multiplayerWindow->setGeometry(this->geometry());
+    multiplayerWindow->InitAnswer(answer);
+}
+
+void AnswerWindow::MultiplayerWindowToThis()
+{
+    multiplayerWindow->hide();
+    this->show();
+    this->setGeometry(multiplayerWindow->geometry());
 }
 
 
