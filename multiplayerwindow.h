@@ -34,7 +34,7 @@ private:
 private slots:
     void ClickBackMenuBtn();
     void ClickConnectBtn();
-    void ClickListBtn();
+    void ClickStartBtn();
     void ClickCallGameBtn();
     void ReadData();
 

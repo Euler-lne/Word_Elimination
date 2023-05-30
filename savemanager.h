@@ -17,9 +17,11 @@ public:
     static int LoadAllPlayerNum(int &_playerNum);
     static int SavePlayerMaker(const QString,const QJsonObject);
     static int SavePlayerAnswer(const QString, const QJsonObject);
-    static int AddWord(QString);
+    static int AddWord(const QString);
     static int RemoveUser(const QString);
     static int RemovePlayer(const QString);
+    static void AddWordArry(const QString);
+    static QString GetWord();
     static const QString PATH;
     static const int ERROR;
     static const int TYPE_ERROR;
@@ -33,6 +35,8 @@ public:
     static const QString EXP;
     static const QString ANSWER;
     static const QString MAKER;
+
+
 
 };
 

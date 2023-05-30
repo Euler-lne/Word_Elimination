@@ -24,7 +24,7 @@ void MultiplayerWindow::InitConnect()
     connect(ui->backMenuBtn,&QPushButton::clicked,this,&MultiplayerWindow::ClickBackMenuBtn);
     connect(ui->connectBtn,&QPushButton::clicked,this, &MultiplayerWindow::ClickConnectBtn);
     connect(ui->callGameBtn,&QPushButton::clicked,this,&MultiplayerWindow::ClickCallGameBtn);
-    connect(ui->listBtn,&QPushButton::clicked,this,&MultiplayerWindow::ClickListBtn);
+    connect(ui->startBtn,&QPushButton::clicked,this,&MultiplayerWindow::ClickStartBtn);
     connect(tcpClient,&QTcpSocket::readyRead,this,&MultiplayerWindow::ReadData);
     connect(tcpClient,&QTcpSocket::disconnected,this,[=](){
         tcpClient->close();
@@ -33,6 +33,9 @@ void MultiplayerWindow::InitConnect()
 
 void MultiplayerWindow::ClickBackMenuBtn()
 {
+    ui->info->setText("");
+    ui->ip->setText("");
+    ui->port->setText("");
     emit BackToMenu();
 }
 
@@ -46,8 +49,11 @@ void MultiplayerWindow::ClickConnectBtn()
         if(tcpClient->waitForConnected(5000))
         {
             //把用户信息传输给客户端
-            tcpClient->write("name " + answer->GetName());
-            //初始化网络信息
+            QString tempString = "NAME " + answer->GetName();
+            tcpClient->write(tempString.toUtf8());
+            //把单词信息传递给网络，进行关卡更新
+            tempString = "WORD ";
+
             ui->connectBtn->setText("断开连接");
         }
         else
@@ -59,6 +65,7 @@ void MultiplayerWindow::ClickConnectBtn()
     else
     {
         tcpClient->close();
+        ui->info->setText("");
         ui->connectBtn->setText("连接服务器");
     }
 }
@@ -66,7 +73,28 @@ void MultiplayerWindow::ClickCallGameBtn()
 {
 
 }
-void MultiplayerWindow::ClickListBtn()
+void MultiplayerWindow::ClickStartBtn()
 {
 
+}
+void MultiplayerWindow::ReadData()
+{
+    QByteArray buffer;
+    buffer = tcpClient->readAll();
+    if(buffer.split(' ')[0] == "ERROR")
+    {
+        if(buffer.split(' ')[1]=="1")
+        {
+            //用户已经被登录
+            QMessageBox::warning(this,"警告","用户被登录，如果想继续使用联机功能请退出账号重新登录！");
+            ui->info->setText("");
+            ui->ip->setText("");
+            ui->port->setText("");
+            ui->connectBtn->setText("连接服务器");
+        }
+    }
+    else if(buffer.split(' ')[0] == "STATE")
+    {
+        ui->info->setText(buffer.split(' ')[1]);
+    }
 }

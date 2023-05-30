@@ -24,8 +24,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>278</width>
-        <height>198</height>
+        <width>263</width>
+        <height>174</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -50,9 +50,9 @@
        <widget class="QWidget" name="widget_6" native="true">
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QPushButton" name="listBtn">
+          <widget class="QPushButton" name="startBtn">
            <property name="text">
-            <string>挑战列表</string>
+            <string>开始匹配</string>
            </property>
           </widget>
          </item>

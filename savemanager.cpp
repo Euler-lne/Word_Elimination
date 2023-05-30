@@ -403,6 +403,7 @@ int SaveManager::SavePlayerMaker(const QString _name, const QJsonObject _makerDa
 
 int SaveManager::AddWord(QString _word)
 {
+    AddWordArry(_word);
     QString path = PATH + "/data/level.json";
     QFile file1(path);
     if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -493,6 +494,52 @@ int SaveManager::AddWord(QString _word)
     file2.write(doc.toJson());
     file2.close();
     return OK;
+}
+
+QString SaveManager::GetWord()
+{
+    QString path = PATH + "/data/word.json";
+    QFile file1(path);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return "";
+    }
+    QTextStream in(&file1);
+    QString jsonString = in.readAll();
+    file1.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonArray arry = doc.array();
+    return "";
+}
+
+void SaveManager::AddWordArry(const QString _word)
+{
+    QString path = PATH + "/data/word.json";
+    QFile file1(path);
+    if(!file1.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return;
+    }
+    QTextStream in(&file1);
+    QString jsonString = in.readAll();
+    file1.close();
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    QJsonArray arry = doc.array();
+    if(!arry.contains(_word))
+    {
+        arry.append(_word);
+    }
+    doc.setArray(arry);
+    QFile file2(path);
+    if(!file2.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug()<<"打开文件失败";
+        return;
+    }
+    file2.write(doc.toJson());
+    file2.close();
 }
 
 int SaveManager::LoadAllPlayerName(QString *_playerArry)
