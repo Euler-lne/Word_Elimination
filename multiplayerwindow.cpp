@@ -49,11 +49,8 @@ void MultiplayerWindow::ClickConnectBtn()
         if(tcpClient->waitForConnected(5000))
         {
             //把用户信息传输给客户端
-            QString tempString = "NAME " + answer->GetName();
-            tcpClient->write(tempString.toUtf8());
-            //把单词信息传递给网络，进行关卡更新
-            tempString = "WORD ";
-
+//            tcpClient->write("name " + answer->GetName());
+            //初始化网络信息
             ui->connectBtn->setText("断开连接");
         }
         else
