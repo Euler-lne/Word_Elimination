@@ -36,7 +36,8 @@ SOURCES += \
     addword.cpp \
     accountwindow.cpp \
     rankwindow.cpp \
-    multiplayerwindow.cpp
+    multiplayerwindow.cpp \
+    multigame.cpp
 
 HEADERS += \
         widget.h \
@@ -50,7 +51,8 @@ HEADERS += \
     addword.h \
     accountwindow.h \
     rankwindow.h \
-    multiplayerwindow.h
+    multiplayerwindow.h \
+    multigame.h
 
 FORMS += \
         widget.ui \
@@ -60,4 +62,5 @@ FORMS += \
     addword.ui \
     accountwindow.ui \
     rankwindow.ui \
-    multiplayerwindow.ui
+    multiplayerwindow.ui \
+    multigame.ui

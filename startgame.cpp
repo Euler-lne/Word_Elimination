@@ -201,7 +201,7 @@ void StartGame::ClickConfirmBtn()
         {
             //正确
             leftWord--;
-            answer->UpdateEXP(levelNum,expectedWord.length());
+            answer->UptateEXP(levelNum,expectedWord.length());
             if(leftWord == 0)   //这个只是改变了名称，需要再按一次，再按一次的时候leftWord已经为0
             {
                 //最后一个正确下一关
@@ -210,7 +210,7 @@ void StartGame::ClickConfirmBtn()
                 ui->playInput->setEnabled(false);
                 ui->playInput->setText("");
                 ui->leftWord->setText(tempString);
-                answer->UpdateEXP(levelNum,-1);
+                answer->UptateEXP(levelNum,-1);
                 levelNum ++;
                 //玩家相关属性改变，因为当前的关卡数已经增加，所以只有当前关卡数大于玩家自生关数才会增加
                 if(levelNum > answer->GetLevelNum() && gameType==GameType::CHANLLENGE)

@@ -73,9 +73,9 @@ void Widget::ClickLogin()
 /// 5.如果密码不一样则重新输入密码。
 void Widget::ClickEnroll()
 {
-    if(ui->account->text() == "")
+    if(ui->account->text() == "" || ui->account->text().contains(';'))
     {
-        QMessageBox::critical(this, tr("错误"), tr("用户名不可以为空！"));
+        QMessageBox::critical(this, tr("错误"), tr("用户名不可以为空！或者出现';'"));
         return;
     }
     if(ui->password->text() == "")

@@ -25,7 +25,7 @@ void Answer::LoadData()
     levelNum = data.value(SaveManager::LEVEL_NUM).toInt();
 }
 
-void Answer::UpdateEXP(int _level, int _length)
+void Answer::UptateEXP(int _level, int _length)
 {
     max = 10 * pow(2,grade/5 +2);
     if(_length == -1)
@@ -42,6 +42,36 @@ void Answer::UpdateEXP(int _level, int _length)
     if(exp >= max)
     {
         exp = exp - max;
-        UpdateGrade();
+        UpdateGrade(1);
+    }
+}
+
+void Answer::UptateEXP(int _exp)
+{
+    max = 10 * pow(2,grade/5 +2);
+    if(_exp>0)
+    {
+        exp+=_exp;
+        if(exp >= max)
+        {
+            exp -= max;
+            UpdateGrade(1);
+        }
+    }
+    else
+    {
+        exp -= _exp;
+        while(exp < 0)
+        {
+            UpdateGrade(-1);
+            max = 10 * pow(2,grade/5 +2);
+            exp = max + exp;
+            //不够减的情况
+            if(grade == 0 && exp <0)
+            {
+                exp = 0;
+                break;
+            }
+        }
     }
 }

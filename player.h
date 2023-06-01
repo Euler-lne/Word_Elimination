@@ -26,7 +26,11 @@ protected:
     int grade;
     int max;
 
-    void UpdateGrade(){grade ++;}
+    void UpdateGrade(int _num){
+        grade += _num;
+        if(grade <0)
+            grade = 0;
+    }
 
 
 

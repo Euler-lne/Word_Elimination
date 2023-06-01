@@ -24,9 +24,9 @@ void AddWord::ClickBackBtn()
 }
 void AddWord::ClickConfirmBtn()
 {
-    if(ui->word->text() == "")
+    if(ui->word->text() == "" || ui->word->text().contains(';'))
     {
-        QMessageBox::warning(this,tr("警告"),tr("不能输入空串！\n请重新输入！"));
+        QMessageBox::warning(this,tr("警告"),tr("不能输入空串！或者包含';'\n请重新输入！"));
         return;
     }
     int tempInt = SaveManager::AddWord(ui->word->text());

@@ -14,7 +14,7 @@
     "2": {
         "Answer": {
             "EXP": 0,
-            "Grade": 0,
+            "Grade": 16,
             "Level Num": 1
         },
         "Maker": {
@@ -38,7 +38,7 @@
     "py": {
         "Answer": {
             "EXP": 10,
-            "Grade": 1,
+            "Grade": 5,
             "Level Num": 7
         },
         "Maker": {

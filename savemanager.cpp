@@ -510,7 +510,15 @@ QString SaveManager::GetWord()
     file1.close();
     QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
     QJsonArray arry = doc.array();
-    return "";
+    QString tempString = "";
+    for(int i=0;i<arry.size();i++)
+    {
+        if(i!=arry.size()-1)
+            tempString += arry.at(i).toString() + ' ';
+        else
+            tempString += arry.at(i).toString();
+    }
+    return tempString;
 }
 
 void SaveManager::AddWordArry(const QString _word)

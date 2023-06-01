@@ -30,6 +30,6 @@ void Maker::UpdateEXP(int _length)
     if(exp >= max)
     {
         exp = exp - max;
-        UpdateGrade();
+        UpdateGrade(1);
     }
 }

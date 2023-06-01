@@ -1,6 +1,7 @@
 #include "answerwindow.h"
 #include "ui_answerwindow.h"
 #include "savemanager.h"
+#include <QMessageBox>
 
 
 AnswerWindow::AnswerWindow(QWidget *parent) :
@@ -103,10 +104,17 @@ void AnswerWindow::RankWindowToThis()
 
 void AnswerWindow::ClickMultiplayerBtn()
 {
-    this->hide();
-    multiplayerWindow->show();
-    multiplayerWindow->setGeometry(this->geometry());
-    multiplayerWindow->InitAnswer(answer);
+    if(answer->GetGrade() >= 3)
+    {
+        this->hide();
+        multiplayerWindow->show();
+        multiplayerWindow->setGeometry(this->geometry());
+        multiplayerWindow->InitAnswer(answer);
+    }
+    else
+    {
+        QMessageBox::information(this,"等级不足","当前等级为"+QString::number(answer->GetGrade())+'\n'+"等级不足3级，不能进行多人游戏！");
+    }
 }
 
 void AnswerWindow::MultiplayerWindowToThis()
