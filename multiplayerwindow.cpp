@@ -28,6 +28,7 @@ MultiplayerWindow::~MultiplayerWindow()
     delete tcpClient;
     delete multiGame;
     delete ui;
+    answer->UpdateData();
 }
 
 void MultiplayerWindow::InitConnect()
@@ -62,6 +63,7 @@ void MultiplayerWindow::ClickBackMenuBtn()
             ui->connectBtn->setText("连接服务器");
             tcpClient->close();
     }
+    answer->UpdateData();
     emit BackToMenu();
 }
 

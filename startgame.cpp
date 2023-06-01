@@ -34,6 +34,7 @@ StartGame::~StartGame()
         killTimer(timerID);
         timerID = -1;
     }
+    answer->UpdateData();
 }
 void StartGame::InitConnect()
 {

@@ -15,6 +15,7 @@ AddWord::AddWord(QWidget *parent) :
 AddWord::~AddWord()
 {
     delete ui;
+    maker->UpdateData();
 }
 
 void AddWord::ClickBackBtn()
