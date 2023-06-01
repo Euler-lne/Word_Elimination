@@ -32,4 +32,5 @@ void Maker::UpdateEXP(int _length)
         exp = exp - max;
         UpdateGrade(1);
     }
+    UpdateData();
 }

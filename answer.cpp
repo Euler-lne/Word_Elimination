@@ -44,6 +44,7 @@ void Answer::UptateEXP(int _level, int _length)
         exp = exp - max;
         UpdateGrade(1);
     }
+    UpdateData();
 }
 
 void Answer::UptateEXP(int _exp)
@@ -74,4 +75,5 @@ void Answer::UptateEXP(int _exp)
             }
         }
     }
+    UpdateData();
 }
