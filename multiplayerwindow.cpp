@@ -161,7 +161,11 @@ void MultiplayerWindow::ReadData()
                 ui->info->setText("");
                 ui->ip->setText("");
                 ui->port->setText("");
-                ClickConnectBtn();
+                tcpClient->close();
+                ui->info->setText("");
+                ui->connectBtn->setText("连接服务器");
+                ui->callGameBtn->setDisabled(true);
+                ui->startBtn->setDisabled(true);
                 break;
             }
             else if(buffer.split(' ')[1]=="2")
@@ -171,7 +175,11 @@ void MultiplayerWindow::ReadData()
                 ui->info->setText("");
                 ui->ip->setText("");
                 ui->port->setText("");
-                ClickConnectBtn();
+                tcpClient->close();
+                ui->info->setText("");
+                ui->connectBtn->setText("连接服务器");
+                ui->callGameBtn->setDisabled(true);
+                ui->startBtn->setDisabled(true);
                 break;
             }
         }

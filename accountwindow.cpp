@@ -129,7 +129,7 @@ void AccountWindow::ClickLogoutBtn()
 //        type = 0; //出题者
 //    else
 //        type = 1; //闯关者
-    bool key;
+    bool key = false;
     QMessageBox mess(QMessageBox::Question, tr("询问"), tr("是否确定要删除账户信息？\n若账户同为答题者和出题者账户都会删除！\n请三思！"));
     QPushButton *button1= (mess.addButton(tr("是"), QMessageBox::AcceptRole));
     QPushButton *button2= (mess.addButton(tr("否"), QMessageBox::YesRole));
